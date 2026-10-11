@@ -3,23 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mitochondrial Transfer into Neutrophils · Mito Work</title>
+  <title>Mitochondrial Transfer into Neutrophils &middot; Mitochondria</title>
   <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="../../index.html">Mito Work <span>· Primordia</span></a>
+    <a class="brand" href="../../index.html" aria-label="Home"><svg viewBox="0 0 40 18" width="40" height="18" aria-hidden="true"><rect x="1.4" y="1.4" width="37.2" height="15.2" rx="7.6" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M 8,9 Q 11,3.6 14,9 T 20,9 T 26,9 T 32,9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
     <nav class="nav-links">
       <a href="../../index.html#projects">Projects</a>
       <a href="https://github.com/July98293/mito">GitHub</a>
-      <a class="pill small" href="https://primordiagrants.com">Primordia ↗</a>
+      <a class="pill small" href="https://primordiagrants.com">Primordia &#8599;</a>
     </nav>
   </div>
 </header>
 
 <main class="wrap narrow">
-  <div class="back-row"><a class="pill small" href="../../index.html#projects">← All projects</a></div>
+  <div class="back-row"><a class="pill small" href="../../index.html#projects">&larr; All projects</a></div>
 
   <section class="p-hero grain">
     <div class="sheet">
@@ -29,49 +29,67 @@
   </section>
 
   <article class="article">
-    <p class="lead">Between May and June I ran several experiments transferring isolated mitochondria into granulocytes. Uptake stayed low, and the transferred mitochondria lost detectable activity after about 20 minutes. Shadowing an active lab and talking with the PORTER team showed why: isolated mitochondria are very fragile, and uptake is genetically limited. Their approach keeps mitochondria in blood and stabilises them there, which matches what I had hypothesised.</p>
-  <h2 class="sec">Timeline</h2>
-  <ul class="timeline">
-    <li><span class="when">May – June</span>Multiple mitochondrial transfer experiments in granulocytes.</li>
-    <li><span class="when">End of June</span>Reagent ordering, once grant money reached the lab account. Ordering needed the lab ID, so I could not do it alone.</li>
-    <li><span class="when">Sep 19</span>Planned run at the Stanford lab. Postponed because the professor had to leave town.</li>
-    <li><span class="when">Sep 22</span>Rescheduled run: a variation of the PORTER-style experiment.</li>
-  </ul>
-
-  <h2 class="sec">First attempts</h2>
-  <p>Uptake was low in every run. Based on the fluorescent activity assay, the mitochondria that did get in consistently
-  lost signs of activity after roughly 20 minutes. My first idea was that lipid-mediated delivery might fix this.</p>
-
-  <h2 class="sec">What changed my mind</h2>
-  <p>While shadowing Coco in the lab (see <a href="../archie/">the ARCHIE shadowing</a>), I learned that mitochondrial extraction is done
-  quite differently from what the published papers suggest. The lab uses a gentler protocol, with less filtration, a different
-  buffer and a different way of breaking the cells open, all to avoid damaging the mitochondria.</p>
-  <p>In parallel, the <a href="../secondary_transfer/">secondary transfer analysis</a> suggested that mitochondrial uptake is
-  genetically limited. I discussed this with the PORTER team, who use the PORTER machine to transfer mitochondria into neutrophils.
-  Instead of extracting mitochondria, they keep them in blood, stabilise them to preserve their activity, and do the transfer
-  in that environment.</p>
-  <span class="note">their result is what I expected, but it isn't published yet, so I couldn't have known from the literature</span>
-
-  <h2 class="sec">Results so far</h2>
-  <p>My initial hypothesis about granulocytes was correct, even though I had no way to test it at the time.
-  The useful negative result is that isolated mitochondria seem too fragile for this cell type without stabilisation.</p>
-  <blockquote class="quote"><p>“Science, my lad, is made up of mistakes, but they are mistakes which it is useful to make, because they lead little by little to the truth.”</p><cite>Jules Verne, <i>Journey to the Center of the Earth</i></cite></blockquote>
-
-  <h2 class="sec">Next steps</h2>
+  <p class="lead">Isolated mitochondria were transferred into granulocytes across several runs. Uptake was low and the activity signal was lost within about 20 minutes. Two causes were identified: the isolation step itself damages mitochondria, and uptake is genetically constrained. A route that avoids isolation is the next experiment.</p>
+  <h2>Objective</h2>
   <ul>
-    <li>Run a variation of the PORTER-style experiment.</li>
-    <li>If time runs out here, try to reproduce it in Italy. I won't have a PORTER machine there, and I worry the mitochondria are too sensitive to survive without it.</li>
-    <li>Run the <a href="../microgravity_blood/">microgravity variation</a>.</li>
+    <li>Deliver functional mitochondria into neutrophils.</li>
+    <li>Keep them active long enough to produce a measurable effect.</li>
   </ul>
-    <h2>Links</h2><ul class="links"><li><a href="https://docs.google.com/document/d/1kcMtympZKznmKZOCmk6glHhtj8bLUTGe6FA3WrZYADY/edit?usp=sharing">↗ Protocol (Italy)</a></li></ul>
-    <div class="next-prev"><span></span><a class="pill dark" href="../microgravity_blood/">Mitochondrial Transfer in Blood after Microgravity →</a></div>
+  <h2>Method</h2>
+  <ol>
+    <li>Isolate mitochondria from donor cells by differential centrifugation.</li>
+    <li>Label with a fluorescent activity dye.</li>
+    <li>Co-incubate with granulocytes.</li>
+    <li>Follow the fluorescent signal over time.</li>
+  </ol>
+  <figure>
+    <img src="img/f1_workflow.svg" alt="Five step workflow from donor cells to fluorescence readout.">
+    <figcaption><b>Figure 1.</b> Workflow used in the May and June runs. The two failure points sit at co-incubation and readout.</figcaption>
+  </figure>
+  <h2>Results</h2>
+  <ul>
+    <li>Uptake was low in every run.</li>
+    <li>Transferred mitochondria lost detectable activity after about 20 minutes.</li>
+    <li>Lipid-mediated delivery was the first hypothesis for the loss. It was dropped once the cause became clearer.</li>
+    <li>Negative result: isolated mitochondria are too fragile for this cell type without stabilisation.</li>
+  </ul>
+  <figure>
+    <img src="img/f2_activity.svg" alt="Decay curve of the activity signal reaching the detection floor at about 20 minutes.">
+    <figcaption><b>Figure 2.</b> Shape of the observed loss of signal. Schematic, not measured values.</figcaption>
+  </figure>
+  <blockquote class="quote"><p>&ldquo;Science, my lad, is made up of mistakes, but they are mistakes which it is useful to make, because they lead little by little to the truth.&rdquo;</p><cite>Jules Verne, <i>Journey to the Center of the Earth</i></cite></blockquote>
+  <h2>What explained it</h2>
+  <ol>
+    <li>The isolation protocol in the literature is not the one the lab uses. Less filtration, a different buffer, and sonication rather than a fine needle, all to limit damage. Learned while <a href="../archie/">shadowing the ARCHIE project</a>.</li>
+    <li>Mitochondrial uptake is genetically limited. This came out of the <a href="../secondary_transfer/">secondary transfer analysis</a> running in parallel.</li>
+    <li>The PORTER team keeps mitochondria in blood, stabilises them there, and performs the transfer in that environment rather than extracting them. Their result matches the hypothesis I started from. It is unpublished, so it was not available from the literature.</li>
+  </ol>
+  <figure>
+    <img src="img/f3_routes.svg" alt="Comparison of the isolated route used here and the in-blood route used by the PORTER team.">
+    <figcaption><b>Figure 3.</b> The two routes differ in one respect that matters: whether mitochondria ever leave the blood.</figcaption>
+  </figure>
+  <h2>Status and next steps</h2>
+  <ul>
+    <li><b>19 September.</b> Run scheduled at the Stanford lab, postponed when the professor had to leave town.</li>
+    <li><b>22 September.</b> Rescheduled as a variation of the in-blood route.</li>
+    <li><b>Fallback.</b> Reproduce in Italy. No PORTER machine there, and the mitochondria may not survive without it.</li>
+    <li>Reagent ordering was blocked until grant funds reached the lab account, since ordering requires a lab ID.</li>
+  </ul>
+  <h2>Assessment</h2>
+  <ul>
+    <li>The initial hypothesis about granulocytes was correct, but not testable with the method available at the time.</li>
+    <li>The limiting factor was the preparation, not the cell type.</li>
+  </ul>
+  <h2>Links</h2>
+  <ul class="links"><li><a href="https://docs.google.com/document/d/1kcMtympZKznmKZOCmk6glHhtj8bLUTGe6FA3WrZYADY/edit?usp=sharing">&#8599; Protocol, Italy</a></li></ul>
+  <div class="next-prev"><span></span><a class="pill dark" href="../microgravity_blood/">Mitochondrial Transfer in Blood after Microgravity &rarr;</a></div>
   </article>
 </main>
 
 <footer class="foot">
   <div class="wrap">
-    <span>Jules · Italy</span>
-    <span>Supported by <a href="https://primordiagrants.com">Primordia Grants</a> · <a href="https://github.com/July98293/mito">GitHub</a></span>
+    <span>Jules &middot; Italy</span>
+    <span>Supported by <a href="https://primordiagrants.com">Primordia Grants</a> &middot; <a href="https://github.com/July98293/mito">GitHub</a></span>
   </div>
 </footer>
 </body>

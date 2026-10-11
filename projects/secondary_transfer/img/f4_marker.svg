@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 216" role="img" aria-labelledby="ti de">
+  <title id="ti">Specificity of ITGA2B as a surface marker</title>
+  <desc id="de">ITGA2B is present in 87 percent of myeloid progenitor cells and 3 percent of all other cell types.</desc>
+  <style>
+    text { font-family: "Jost","Avenir Next","Futura","Century Gothic",system-ui,sans-serif; fill: #24233a; }
+    .t  { font-size: 15px; font-weight: 600; fill: #16152b; }
+    .s  { font-size: 13px; }
+    .xs { font-size: 11.5px; fill: #5f5d7a; }
+    .num { font-size: 13px; font-weight: 600; fill: #16152b; }
+    .box { fill: #ece7f8; stroke: #3a3fb8; stroke-width: 2; }
+    .boxw { fill: #faf8ff; stroke: #3a3fb8; stroke-width: 2; }
+    .dash { fill: none; stroke: #3a3fb8; stroke-width: 2; stroke-dasharray: 6 5; }
+    .arr { fill: none; stroke: #3a3fb8; stroke-width: 2; marker-end: url(#a); }
+    .ax { stroke: #8b87a8; stroke-width: 1.5; }
+    .gl { stroke: #ded9ec; stroke-width: 1; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#3a3fb8"/>
+    </marker>
+  </defs>
+<text class="s" x="230" y="32">Myeloid progenitor</text>
+<rect x="230" y="40" width="380" height="26" rx="13.0" fill="#ece7f8"/>
+<rect x="230" y="40" width="330.6" height="26" rx="13.0" fill="#7d5ff0"/>
+<text class="num" x="570.6" y="53.0" dominant-baseline="middle">87%</text><text class="s" x="230" y="104">All other cell types</text>
+<rect x="230" y="112" width="380" height="26" rx="13.0" fill="#ece7f8"/>
+<rect x="230" y="112" width="11.4" height="26" rx="13.0" fill="#a9a4c0"/>
+<text class="num" x="251.4" y="125.0" dominant-baseline="middle">3%</text><line class="ax" x1="230" y1="164" x2="610" y2="164"/>
+<line class="ax" x1="230.0" y1="164" x2="230.0" y2="169"/>
+<text class="xs" x="230.0" y="182" text-anchor="middle">0%</text>
+<line class="ax" x1="325.0" y1="164" x2="325.0" y2="169"/>
+<text class="xs" x="325.0" y="182" text-anchor="middle">25%</text>
+<line class="ax" x1="420.0" y1="164" x2="420.0" y2="169"/>
+<text class="xs" x="420.0" y="182" text-anchor="middle">50%</text>
+<line class="ax" x1="515.0" y1="164" x2="515.0" y2="169"/>
+<text class="xs" x="515.0" y="182" text-anchor="middle">75%</text>
+<line class="ax" x1="610.0" y1="164" x2="610.0" y2="169"/>
+<text class="xs" x="610.0" y="182" text-anchor="middle">100%</text><text class="xs" x="420" y="206" text-anchor="middle">cells positive for ITGA2B (CD41)</text>
+</svg>

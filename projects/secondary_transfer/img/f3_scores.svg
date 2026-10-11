@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 210" role="img" aria-labelledby="ti de">
+  <title id="ti">Composite carrier score for the two leading populations</title>
+  <desc id="de">Myeloid progenitor scores 8.43 and haematopoietic stem cells and progenitors score 5.49.</desc>
+  <style>
+    text { font-family: "Jost","Avenir Next","Futura","Century Gothic",system-ui,sans-serif; fill: #24233a; }
+    .t  { font-size: 15px; font-weight: 600; fill: #16152b; }
+    .s  { font-size: 13px; }
+    .xs { font-size: 11.5px; fill: #5f5d7a; }
+    .num { font-size: 13px; font-weight: 600; fill: #16152b; }
+    .box { fill: #ece7f8; stroke: #3a3fb8; stroke-width: 2; }
+    .boxw { fill: #faf8ff; stroke: #3a3fb8; stroke-width: 2; }
+    .dash { fill: none; stroke: #3a3fb8; stroke-width: 2; stroke-dasharray: 6 5; }
+    .arr { fill: none; stroke: #3a3fb8; stroke-width: 2; marker-end: url(#a); }
+    .ax { stroke: #8b87a8; stroke-width: 1.5; }
+    .gl { stroke: #ded9ec; stroke-width: 1; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#3a3fb8"/>
+    </marker>
+  </defs>
+<text class="s" x="170" y="36">Myeloid progenitor</text>
+<text class="xs" x="656" y="36" text-anchor="end">1 organ</text>
+<rect x="170" y="44" width="430" height="26" rx="13.0" fill="#ece7f8"/>
+<rect x="170" y="44" width="362.5" height="26" rx="13.0" fill="#7d5ff0"/>
+<text class="num" x="542.5" y="57.0" dominant-baseline="middle">8.43</text><text class="s" x="170" y="108">HSC / progenitors</text>
+<text class="xs" x="656" y="108" text-anchor="end">8 organs, 2,825 cells</text>
+<rect x="170" y="116" width="430" height="26" rx="13.0" fill="#ece7f8"/>
+<rect x="170" y="116" width="236.1" height="26" rx="13.0" fill="#3f8fd4"/>
+<text class="num" x="416.1" y="129.0" dominant-baseline="middle">5.49</text><line class="ax" x1="170" y1="172" x2="600" y2="172"/>
+<line class="ax" x1="170.0" y1="172" x2="170.0" y2="177"/>
+<text class="xs" x="170.0" y="190" text-anchor="middle">0</text>
+<line class="ax" x1="256.0" y1="172" x2="256.0" y2="177"/>
+<text class="xs" x="256.0" y="190" text-anchor="middle">2</text>
+<line class="ax" x1="342.0" y1="172" x2="342.0" y2="177"/>
+<text class="xs" x="342.0" y="190" text-anchor="middle">4</text>
+<line class="ax" x1="428.0" y1="172" x2="428.0" y2="177"/>
+<text class="xs" x="428.0" y="190" text-anchor="middle">6</text>
+<line class="ax" x1="514.0" y1="172" x2="514.0" y2="177"/>
+<text class="xs" x="514.0" y="190" text-anchor="middle">8</text>
+<line class="ax" x1="600.0" y1="172" x2="600.0" y2="177"/>
+<text class="xs" x="600.0" y="190" text-anchor="middle">10</text><text class="xs" x="385" y="200" text-anchor="middle">composite carrier score</text>
+</svg>

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 196" role="img" aria-labelledby="ti de">
+  <title id="ti">Transfer workflow used in the May to June experiments</title>
+  <desc id="de">Five steps: donor cells, mitochondrial isolation, fluorescent labelling, co-incubation with granulocytes, readout.</desc>
+  <style>
+    text { font-family: "Jost","Avenir Next","Futura","Century Gothic",system-ui,sans-serif; fill: #24233a; }
+    .t  { font-size: 15px; font-weight: 600; fill: #16152b; }
+    .s  { font-size: 13px; }
+    .xs { font-size: 11.5px; fill: #5f5d7a; }
+    .num { font-size: 13px; font-weight: 600; fill: #16152b; }
+    .box { fill: #ece7f8; stroke: #3a3fb8; stroke-width: 2; }
+    .boxw { fill: #faf8ff; stroke: #3a3fb8; stroke-width: 2; }
+    .dash { fill: none; stroke: #3a3fb8; stroke-width: 2; stroke-dasharray: 6 5; }
+    .arr { fill: none; stroke: #3a3fb8; stroke-width: 2; marker-end: url(#a); }
+    .ax { stroke: #8b87a8; stroke-width: 1.5; }
+    .gl { stroke: #ded9ec; stroke-width: 1; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#3a3fb8"/>
+    </marker>
+  </defs>
+<rect class="box" x="12" y="26" width="128" height="86" rx="12"/>
+<text class="s" x="76.0" y="63.0" text-anchor="middle" dominant-baseline="middle">Donor cells</text>
+<text class="xs" x="76.0" y="96.0" text-anchor="middle" dominant-baseline="middle">cultured</text>
+<rect class="box" x="165" y="26" width="128" height="86" rx="12"/>
+<text class="s" x="229.0" y="55.5" text-anchor="middle" dominant-baseline="middle">Isolate</text>
+<text class="s" x="229.0" y="70.5" text-anchor="middle" dominant-baseline="middle">mitochondria</text>
+<text class="xs" x="229.0" y="89.5" text-anchor="middle" dominant-baseline="middle">differential</text>
+<text class="xs" x="229.0" y="102.5" text-anchor="middle" dominant-baseline="middle">centrifugation</text>
+<path class="arr" d="M 142,69.0 L 159,69.0"/>
+<rect class="box" x="318" y="26" width="128" height="86" rx="12"/>
+<text class="s" x="382.0" y="63.0" text-anchor="middle" dominant-baseline="middle">Label</text>
+<text class="xs" x="382.0" y="89.5" text-anchor="middle" dominant-baseline="middle">fluorescent activity</text>
+<text class="xs" x="382.0" y="102.5" text-anchor="middle" dominant-baseline="middle">dye</text>
+<path class="arr" d="M 295,69.0 L 312,69.0"/>
+<rect class="box" x="471" y="26" width="128" height="86" rx="12"/>
+<text class="s" x="535.0" y="63.0" text-anchor="middle" dominant-baseline="middle">Co-incubate</text>
+<text class="xs" x="535.0" y="96.0" text-anchor="middle" dominant-baseline="middle">with granulocytes</text>
+<path class="arr" d="M 448,69.0 L 465,69.0"/>
+<rect class="box" x="624" y="26" width="128" height="86" rx="12"/>
+<text class="s" x="688.0" y="63.0" text-anchor="middle" dominant-baseline="middle">Read out</text>
+<text class="xs" x="688.0" y="89.5" text-anchor="middle" dominant-baseline="middle">fluorescence over</text>
+<text class="xs" x="688.0" y="102.5" text-anchor="middle" dominant-baseline="middle">time</text>
+<path class="arr" d="M 601,69.0 L 618,69.0"/>
+<path class="dash" d="M 140,150 L 140,168 L 652,168 L 652,150"/><text class="xs" x="396" y="182.0" text-anchor="middle" dominant-baseline="middle">uptake low at step 4, signal gone by about 20 min at step 5</text>
+</svg>

@@ -3,23 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Comparison against Disease: Leukemia · Mito Work</title>
+  <title>Comparison against Disease: Leukemia &middot; Mitochondria</title>
   <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="../../index.html">Mito Work <span>· Primordia</span></a>
+    <a class="brand" href="../../index.html" aria-label="Home"><svg viewBox="0 0 40 18" width="40" height="18" aria-hidden="true"><rect x="1.4" y="1.4" width="37.2" height="15.2" rx="7.6" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M 8,9 Q 11,3.6 14,9 T 20,9 T 26,9 T 32,9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
     <nav class="nav-links">
       <a href="../../index.html#projects">Projects</a>
       <a href="https://github.com/July98293/mito">GitHub</a>
-      <a class="pill small" href="https://primordiagrants.com">Primordia ↗</a>
+      <a class="pill small" href="https://primordiagrants.com">Primordia &#8599;</a>
     </nav>
   </div>
 </header>
 
 <main class="wrap narrow">
-  <div class="back-row"><a class="pill small" href="../../index.html#projects">← All projects</a></div>
+  <div class="back-row"><a class="pill small" href="../../index.html#projects">&larr; All projects</a></div>
 
   <section class="p-hero grain">
     <div class="sheet">
@@ -29,59 +29,52 @@
   </section>
 
   <article class="article">
-    <p class="lead">I built a pipeline to identify and characterise mitochondrial receiver programs in disease contexts, starting with acute myeloid leukemia (AML). Compared with healthy donors, mitochondrial genes are modestly but consistently up in T and NK cells, down in erythroid cells, and show no reliable signal elsewhere.</p>
-  <h2 class="sec">Approach</h2>
-  <p>The pipeline reuses the foundation of <a href="../secondary_transfer/">the secondary transfer project</a> and applies it to disease datasets.
-  Because datasets come from different studies and conditions, much of the work is choosing comparable datasets and building
-  robust batch correction and normalisation.</p>
-
+  <p class="lead">The receiver-program pipeline was extended to disease. In acute myeloid leukemia against healthy donors, mitochondrial genes are modestly but consistently up in T and NK cells, down in erythroid cells, and flat elsewhere. Batch structure across studies is the limiting factor.</p>
+  <h2>Objective</h2>
+  <ul>
+    <li>Identify and characterise mitochondrial receiver programs in a disease context.</li>
+    <li>Establish a comparison that holds up across datasets from different studies.</li>
+  </ul>
+  <h2>Method</h2>
+  <ol>
+    <li>Select patient and healthy donor datasets.</li>
+    <li>Harmonise batch structure and normalisation.</li>
+    <li>Aggregate to pseudobulk per cell type, per donor.</li>
+    <li>Score against mitochondrial gene sets, chiefly oxidative phosphorylation and mitochondrial ribosome genes.</li>
+    <li>Test per cell type. Run across 10 cell groups.</li>
+  </ol>
   <figure>
-    <div class="fig-placeholder grain"><span>figure coming soon</span></div>
-    <figcaption><b>Figure 1.</b> Data used.</figcaption>
+    <img src="img/f1_pipeline.svg" alt="Five stage disease comparison pipeline.">
+    <figcaption><b>Figure 1.</b> Disease comparison pipeline. Steps 1 and 2 are where most of the work sits.</figcaption>
   </figure>
+  <h2>Results</h2>
+  <ul>
+    <li>T and NK cells: up, modest but consistent.</li>
+    <li>B cells: same direction, short of significance.</li>
+    <li>Erythroid cells: down.</li>
+    <li>Remaining cell types tested: no reliable signal.</li>
+    <li>Not every one of the 10 groups shows significant variation in pathways.</li>
+  </ul>
   <figure>
-    <div class="fig-placeholder grain"><span>figure coming soon</span></div>
-    <figcaption><b>Figure 2.</b> Mitochondrial genes that vary most between leukemia and healthy donors in T cells.</figcaption>
+    <img src="img/f2_direction.svg" alt="Direction of change by cell type in AML against healthy donors.">
+    <figcaption><b>Figure 2.</b> Direction of change by cell type. Effect sizes are modest, so direction and consistency carry the result, not magnitude.</figcaption>
   </figure>
-
-  <p>The same analysis was re-run for 10 cell groups. Not every group shows significant pathway changes.</p>
-
-  <figure>
-    <div class="fig-placeholder grain"><span>figure coming soon</span></div>
-    <figcaption><b>Figure 3.</b> Re-run across 10 cell groups.</figcaption>
-  </figure>
-  <figure>
-    <div class="fig-placeholder grain"><span>figure coming soon</span></div>
-    <figcaption><b>Figure 4.</b> Final check: cell types against the mitochondrial pathways affected.</figcaption>
-  </figure>
-
-  <h2 class="sec">Results</h2>
-  <div class="table-wrap">
-  <table>
-    <caption><b>Table 1:</b> Mitochondrial gene expression in AML vs healthy donors, by cell type.</caption>
-    <thead><tr><th>Cell type</th><th>Direction</th><th>Notes</th></tr></thead>
-    <tbody>
-      <tr><td>T cells</td><td>↑ up</td><td>Modest but consistent. Driven by oxidative-phosphorylation and mitochondrial-ribosome genes.</td></tr>
-      <tr><td>NK cells</td><td>↑ up</td><td>Same pattern as T cells.</td></tr>
-      <tr><td>B cells</td><td>↑ trend</td><td>Same direction, just short of significance.</td></tr>
-      <tr><td>Erythroid</td><td>↓ down</td><td></td></tr>
-      <tr><td>Other types tested</td><td>—</td><td>No reliable signal.</td></tr>
-    </tbody>
-  </table>
-  </div>
-
-  <h2 class="sec">Status</h2>
-  <p>The code is partially complete and still needs review. I am evaluating which datasets are best for comparing
-  several diseases at once.</p>
-    <h2>Links</h2><ul class="links"><li><a href="https://github.com/July98293/mito">↗ Analysis code: github.com/July98293/mito</a></li></ul>
-    <div class="next-prev"><a class="pill" href="../secondary_transfer/">← Secondary Mitochondrial Transfer</a><a class="pill dark" href="../disease_modeling/">More Diseases and Organelle-Level Modeling →</a></div>
+  <h2>Limits</h2>
+  <ul>
+    <li>Datasets come from different studies and experimental conditions, so batch correction drives the outcome.</li>
+    <li>Dataset selection for multi-disease comparison is still open.</li>
+    <li>Review of the code is still outstanding.</li>
+  </ul>
+  <h2>Links</h2>
+  <ul class="links"><li><a href="https://github.com/July98293/mito">&#8599; Analysis code</a></li></ul>
+  <div class="next-prev"><a class="pill" href="../secondary_transfer/">&larr; Secondary Mitochondrial Transfer</a><a class="pill dark" href="../disease_modeling/">More Diseases and Organelle-Level Modeling &rarr;</a></div>
   </article>
 </main>
 
 <footer class="foot">
   <div class="wrap">
-    <span>Jules · Italy</span>
-    <span>Supported by <a href="https://primordiagrants.com">Primordia Grants</a> · <a href="https://github.com/July98293/mito">GitHub</a></span>
+    <span>Jules &middot; Italy</span>
+    <span>Supported by <a href="https://primordiagrants.com">Primordia Grants</a> &middot; <a href="https://github.com/July98293/mito">GitHub</a></span>
   </div>
 </footer>
 </body>

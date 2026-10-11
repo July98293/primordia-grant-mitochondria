@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" role="img" aria-labelledby="ti de">
+  <title id="ti">Two routes for delivering mitochondria</title>
+  <desc id="de">The isolated route used in this project compared with the in-blood route used by the PORTER team.</desc>
+  <style>
+    text { font-family: "Jost","Avenir Next","Futura","Century Gothic",system-ui,sans-serif; fill: #24233a; }
+    .t  { font-size: 15px; font-weight: 600; fill: #16152b; }
+    .s  { font-size: 13px; }
+    .xs { font-size: 11.5px; fill: #5f5d7a; }
+    .num { font-size: 13px; font-weight: 600; fill: #16152b; }
+    .box { fill: #ece7f8; stroke: #3a3fb8; stroke-width: 2; }
+    .boxw { fill: #faf8ff; stroke: #3a3fb8; stroke-width: 2; }
+    .dash { fill: none; stroke: #3a3fb8; stroke-width: 2; stroke-dasharray: 6 5; }
+    .arr { fill: none; stroke: #3a3fb8; stroke-width: 2; marker-end: url(#a); }
+    .ax { stroke: #8b87a8; stroke-width: 1.5; }
+    .gl { stroke: #ded9ec; stroke-width: 1; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#3a3fb8"/>
+    </marker>
+  </defs>
+<text class="t" x="12" y="24">A &#160; Isolated mitochondria (this project)</text><rect class="box" x="12" y="38" width="170" height="76" rx="12"/>
+<text class="s" x="97.0" y="76.0" text-anchor="middle" dominant-baseline="middle">Whole blood</text>
+<rect class="box" x="202" y="38" width="170" height="76" rx="12"/>
+<text class="s" x="287.0" y="70.0" text-anchor="middle" dominant-baseline="middle">Isolate</text>
+<text class="xs" x="287.0" y="91.5" text-anchor="middle" dominant-baseline="middle">mitochondria removed</text>
+<text class="xs" x="287.0" y="104.5" text-anchor="middle" dominant-baseline="middle">from cells</text>
+<path class="arr" d="M 184,76.0 L 196,76.0"/>
+<rect class="box" x="392" y="38" width="170" height="76" rx="12"/>
+<text class="s" x="477.0" y="68.5" text-anchor="middle" dominant-baseline="middle">Add to</text>
+<text class="s" x="477.0" y="83.5" text-anchor="middle" dominant-baseline="middle">granulocytes</text>
+<path class="arr" d="M 374,76.0 L 386,76.0"/>
+<rect class="box" x="582" y="38" width="170" height="76" rx="12"/>
+<text class="s" x="667.0" y="70.0" text-anchor="middle" dominant-baseline="middle">Low uptake</text>
+<text class="xs" x="667.0" y="98.0" text-anchor="middle" dominant-baseline="middle">activity lost</text>
+<path class="arr" d="M 564,76.0 L 576,76.0"/><text class="t" x="12" y="176">B &#160; Mitochondria kept in blood (PORTER)</text><rect class="box" x="12" y="190" width="170" height="76" rx="12"/>
+<text class="s" x="97.0" y="228.0" text-anchor="middle" dominant-baseline="middle">Whole blood</text>
+<rect class="box" x="202" y="190" width="170" height="76" rx="12"/>
+<text class="s" x="287.0" y="214.5" text-anchor="middle" dominant-baseline="middle">Stabilise in</text>
+<text class="s" x="287.0" y="229.5" text-anchor="middle" dominant-baseline="middle">place</text>
+<text class="xs" x="287.0" y="250.0" text-anchor="middle" dominant-baseline="middle">no isolation step</text>
+<path class="arr" d="M 184,228.0 L 196,228.0"/>
+<rect class="box" x="392" y="190" width="170" height="76" rx="12"/>
+<text class="s" x="477.0" y="222.0" text-anchor="middle" dominant-baseline="middle">Transfer in blood</text>
+<text class="xs" x="477.0" y="250.0" text-anchor="middle" dominant-baseline="middle">PORTER machine</text>
+<path class="arr" d="M 374,228.0 L 386,228.0"/>
+<rect class="box" x="582" y="190" width="170" height="76" rx="12"/>
+<text class="s" x="667.0" y="222.0" text-anchor="middle" dominant-baseline="middle">Uptake retained</text>
+<text class="xs" x="667.0" y="250.0" text-anchor="middle" dominant-baseline="middle">activity preserved</text>
+<path class="arr" d="M 564,228.0 L 576,228.0"/><text class="xs" x="12" y="290">Difference: route B never exposes mitochondria to an isolation buffer.</text>
+</svg>

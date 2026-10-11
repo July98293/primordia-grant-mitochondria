@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 290" role="img" aria-labelledby="ti de">
+  <title id="ti">Direct transfer compared with carrier mediated transfer</title>
+  <desc id="de">Instead of adding isolated mitochondria to a target cell, a carrier cell takes them up and delivers them.</desc>
+  <style>
+    text { font-family: "Jost","Avenir Next","Futura","Century Gothic",system-ui,sans-serif; fill: #24233a; }
+    .t  { font-size: 15px; font-weight: 600; fill: #16152b; }
+    .s  { font-size: 13px; }
+    .xs { font-size: 11.5px; fill: #5f5d7a; }
+    .num { font-size: 13px; font-weight: 600; fill: #16152b; }
+    .box { fill: #ece7f8; stroke: #3a3fb8; stroke-width: 2; }
+    .boxw { fill: #faf8ff; stroke: #3a3fb8; stroke-width: 2; }
+    .dash { fill: none; stroke: #3a3fb8; stroke-width: 2; stroke-dasharray: 6 5; }
+    .arr { fill: none; stroke: #3a3fb8; stroke-width: 2; marker-end: url(#a); }
+    .ax { stroke: #8b87a8; stroke-width: 1.5; }
+    .gl { stroke: #ded9ec; stroke-width: 1; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#3a3fb8"/>
+    </marker>
+  </defs>
+<text class="t" x="12" y="24">A &#160; Direct</text><rect class="boxw" x="90" y="36" width="150" height="68" rx="12"/>
+<text class="s" x="165.0" y="62.5" text-anchor="middle" dominant-baseline="middle">Isolated</text>
+<text class="s" x="165.0" y="77.5" text-anchor="middle" dominant-baseline="middle">mitochondria</text><path class="arr" d="M 250,70 L 320,70"/><rect class="box" x="330" y="36" width="150" height="68" rx="12"/>
+<text class="s" x="405.0" y="70.0" text-anchor="middle" dominant-baseline="middle">Target cell</text><text class="xs" x="500" y="74">fragile in transit, uptake limited</text><text class="t" x="12" y="152">B &#160; Carrier mediated</text><rect class="boxw" x="64" y="164" width="150" height="68" rx="12"/>
+<text class="s" x="139.0" y="198.0" text-anchor="middle" dominant-baseline="middle">Donor cell</text><path class="arr" d="M 224,198 L 284,198"/><rect class="box" x="294" y="164" width="170" height="68" rx="12"/>
+<text class="s" x="379.0" y="192.0" text-anchor="middle" dominant-baseline="middle">Carrier cell</text>
+<text class="xs" x="379.0" y="216.0" text-anchor="middle" dominant-baseline="middle">takes up and holds</text><path class="arr" d="M 474,198 L 534,198"/><rect class="boxw" x="544" y="164" width="150" height="68" rx="12"/>
+<text class="s" x="619.0" y="198.0" text-anchor="middle" dominant-baseline="middle">Recipient cell</text><text class="xs" x="12" y="268">The analysis asks which immune populations are best suited to the middle role.</text>
+</svg>

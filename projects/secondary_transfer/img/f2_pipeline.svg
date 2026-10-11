@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 170" role="img" aria-labelledby="ti de">
+  <title id="ti">Single cell analysis pipeline</title>
+  <desc id="de">Five stages from raw single cell data to ranked candidate carrier populations.</desc>
+  <style>
+    text { font-family: "Jost","Avenir Next","Futura","Century Gothic",system-ui,sans-serif; fill: #24233a; }
+    .t  { font-size: 15px; font-weight: 600; fill: #16152b; }
+    .s  { font-size: 13px; }
+    .xs { font-size: 11.5px; fill: #5f5d7a; }
+    .num { font-size: 13px; font-weight: 600; fill: #16152b; }
+    .box { fill: #ece7f8; stroke: #3a3fb8; stroke-width: 2; }
+    .boxw { fill: #faf8ff; stroke: #3a3fb8; stroke-width: 2; }
+    .dash { fill: none; stroke: #3a3fb8; stroke-width: 2; stroke-dasharray: 6 5; }
+    .arr { fill: none; stroke: #3a3fb8; stroke-width: 2; marker-end: url(#a); }
+    .ax { stroke: #8b87a8; stroke-width: 1.5; }
+    .gl { stroke: #ded9ec; stroke-width: 1; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#3a3fb8"/>
+    </marker>
+  </defs>
+<rect class="box" x="14" y="26" width="130" height="86" rx="12"/>
+<text class="s" x="79.0" y="61.5" text-anchor="middle" dominant-baseline="middle">Single cell</text>
+<text class="s" x="79.0" y="76.5" text-anchor="middle" dominant-baseline="middle">datasets</text>
+<rect class="box" x="162" y="26" width="130" height="86" rx="12"/>
+<text class="s" x="227.0" y="63.0" text-anchor="middle" dominant-baseline="middle">Normalise</text>
+<text class="xs" x="227.0" y="89.5" text-anchor="middle" dominant-baseline="middle">and check batch</text>
+<text class="xs" x="227.0" y="102.5" text-anchor="middle" dominant-baseline="middle">structure</text>
+<path class="arr" d="M 146,69.0 L 156,69.0"/>
+<rect class="box" x="310" y="26" width="130" height="86" rx="12"/>
+<text class="s" x="375.0" y="63.0" text-anchor="middle" dominant-baseline="middle">Pseudobulk</text>
+<text class="xs" x="375.0" y="96.0" text-anchor="middle" dominant-baseline="middle">per cell type</text>
+<path class="arr" d="M 294,69.0 L 304,69.0"/>
+<rect class="box" x="458" y="26" width="130" height="86" rx="12"/>
+<text class="s" x="523.0" y="55.5" text-anchor="middle" dominant-baseline="middle">Score cell</text>
+<text class="s" x="523.0" y="70.5" text-anchor="middle" dominant-baseline="middle">states</text>
+<text class="xs" x="523.0" y="89.5" text-anchor="middle" dominant-baseline="middle">uptake and donation</text>
+<text class="xs" x="523.0" y="102.5" text-anchor="middle" dominant-baseline="middle">programs</text>
+<path class="arr" d="M 442,69.0 L 452,69.0"/>
+<rect class="box" x="606" y="26" width="130" height="86" rx="12"/>
+<text class="s" x="671.0" y="61.5" text-anchor="middle" dominant-baseline="middle">Rank</text>
+<text class="s" x="671.0" y="76.5" text-anchor="middle" dominant-baseline="middle">candidates</text>
+<path class="arr" d="M 590,69.0 L 600,69.0"/><text class="xs" x="12" y="150">Rebuilt three times; each pass tightened normalisation and the scoring definition.</text>
+</svg>

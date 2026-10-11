@@ -1,8 +1,14 @@
 """Generates projects/<slug>/index.html for every project.
-All project text lives in this file. Edit it, then run: python3 scripts/build_projects.py"""
-import pathlib, re
+
+All project text lives in this file. Figures are generated separately by
+scripts/build_figures.py into projects/<slug>/img/ and referenced from here.
+
+Run: python3 scripts/build_figures.py && python3 scripts/build_projects.py
+"""
+import pathlib
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-out = ROOT / "projects"
+OUT = ROOT / "projects"
 
 GH = "https://github.com/July98293/mito"
 DRIVE = "https://drive.google.com/drive/folders/17nLbYjkUvkEW27cAddLuNI1Nr_VTc1U7"
@@ -11,289 +17,394 @@ PROTO_IT = "https://docs.google.com/document/d/1kcMtympZKznmKZOCmk6glHhtj8bLUTGe
 
 ORDER = ["neutrophil_transfer", "microgravity_blood", "secondary_transfer", "leukemia",
          "disease_modeling", "chlorella", "impact_review", "archie"]
+PAGES = {}
 NAMES = {}
-PAGES = []
 
-NAMES_BY_NUM = {"1.1": "the neutrophil project", "1.2": "the microgravity project", "1.3": "the secondary transfer project",
-                "1.4": "the leukemia project", "1.5": "the disease modeling project", "1.6": "the Chlorella project",
-                "1.7": "the review", "1.8": "the ARCHIE shadowing"}
 
-def clean(html):
-    html = re.sub(r'<span class="secnum">\d+</span>', "", html)
-    html = re.sub(r'<h3 class="sub">\d+\.\d+ ', '<h3 class="sub">', html)
-    html = re.sub(r'project (1\.\d)', lambda m: NAMES_BY_NUM[m.group(1)], html)
-    return html
-
-def page(slug, num, title, status, cls, kind, abstract, body, refs):
-    PAGES.append((slug, num, title, status, cls, kind, abstract, body, refs))
+def page(slug, title, status, cls, kind, lead, body, links=()):
+    PAGES[slug] = dict(title=title, status=status, cls=cls, kind=kind, lead=lead, body=body, links=links)
     NAMES[slug] = title
 
+
+def photo(n, src, alt, cap):
+    """A figure backed by a static image under assets/img/, not a generated SVG."""
+    return (f'  <figure>\n'
+            f'    <img class="photo" src="../../assets/img/{src}" alt="{alt}">\n'
+            f'    <figcaption><b>Figure {n}.</b> {cap}</figcaption>\n'
+            f'  </figure>')
+
+
+def fig(n, src, alt, cap):
+    return (f'  <figure>\n'
+            f'    <img src="img/{src}.svg" alt="{alt}">\n'
+            f'    <figcaption><b>Figure {n}.</b> {cap}</figcaption>\n'
+            f'  </figure>')
+
+
+def ul(items):
+    return "  <ul>\n" + "\n".join(f"    <li>{i}</li>" for i in items) + "\n  </ul>"
+
+
+def ol(items):
+    return "  <ol>\n" + "\n".join(f"    <li>{i}</li>" for i in items) + "\n  </ol>"
+
+
+def h(text):
+    return f"  <h2>{text}</h2>"
+
+
+VERNE = ('  <blockquote class="quote"><p>&ldquo;Science, my lad, is made up of mistakes, but they are mistakes which '
+         'it is useful to make, because they lead little by little to the truth.&rdquo;</p>'
+         '<cite>Jules Verne, <i>Journey to the Center of the Earth</i></cite></blockquote>')
+
+
+# ============================================================== 01
+page("neutrophil_transfer",
+     "Mitochondrial Transfer into Neutrophils", "Ongoing", "ongoing", "Wet lab",
+     "Isolated mitochondria were transferred into granulocytes across several runs. Uptake was low and the activity "
+     "signal was lost within about 20 minutes. Two causes were identified: the isolation step itself damages "
+     "mitochondria, and uptake is genetically constrained. A route that avoids isolation is the next experiment.",
+     "\n".join([
+         h("Objective"),
+         ul(["Deliver functional mitochondria into neutrophils.",
+             "Keep them active long enough to produce a measurable effect."]),
+
+         h("Method"),
+         ol(["Isolate mitochondria from donor cells by differential centrifugation.",
+             "Label with a fluorescent activity dye.",
+             "Co-incubate with granulocytes.",
+             "Follow the fluorescent signal over time."]),
+         fig(1, "f1_workflow", "Five step workflow from donor cells to fluorescence readout.",
+             "Workflow used in the May and June runs. The two failure points sit at co-incubation and readout."),
+
+         h("Results"),
+         ul(["Uptake was low in every run.",
+             "Transferred mitochondria lost detectable activity after about 20 minutes.",
+             "Lipid-mediated delivery was the first hypothesis for the loss. It was dropped once the cause became clearer.",
+             "Negative result: isolated mitochondria are too fragile for this cell type without stabilisation."]),
+         fig(2, "f2_activity", "Decay curve of the activity signal reaching the detection floor at about 20 minutes.",
+             "Shape of the observed loss of signal. Schematic, not measured values."),
+         VERNE,
+
+         h("What explained it"),
+         ol(['The isolation protocol in the literature is not the one the lab uses. Less filtration, a different '
+             'buffer, and sonication rather than a fine needle, all to limit damage. Learned while '
+             '<a href="../archie/">shadowing the ARCHIE project</a>.',
+             'Mitochondrial uptake is genetically limited. This came out of the '
+             '<a href="../secondary_transfer/">secondary transfer analysis</a> running in parallel.',
+             'The PORTER team keeps mitochondria in blood, stabilises them there, and performs the transfer in that '
+             'environment rather than extracting them. Their result matches the hypothesis I started from. It is '
+             'unpublished, so it was not available from the literature.']),
+         fig(3, "f3_routes", "Comparison of the isolated route used here and the in-blood route used by the PORTER team.",
+             "The two routes differ in one respect that matters: whether mitochondria ever leave the blood."),
+
+         h("Status and next steps"),
+         ul(["<b>19 September.</b> Run scheduled at the Stanford lab, postponed when the professor had to leave town.",
+             "<b>22 September.</b> Rescheduled as a variation of the in-blood route.",
+             "<b>Fallback.</b> Reproduce in Italy. No PORTER machine there, and the mitochondria may not survive without it.",
+             'Reagent ordering was blocked until grant funds reached the lab account, since ordering requires a lab ID.']),
+
+         h("Assessment"),
+         ul(["The initial hypothesis about granulocytes was correct, but not testable with the method available at the time.",
+             "The limiting factor was the preparation, not the cell type."]),
+     ]),
+     [("Protocol, Italy", PROTO_IT)])
+
+# ============================================================== 02
+page("microgravity_blood",
+     "Mitochondrial Transfer in Blood after Microgravity", "Planned", "planned", "Wet lab",
+     "A variation of the neutrophil experiment in which blood is exposed to simulated microgravity before transfer. "
+     "The design is fixed. The work is blocked on access to a calibrated clinostat.",
+     "\n".join([
+         h("Objective"),
+         ul(["Test whether exposure to simulated microgravity changes mitochondrial uptake or how long activity persists.",
+             "Keep every other variable identical to the <a href=\"../neutrophil_transfer/\">neutrophil experiment</a>."]),
+
+         h("Design"),
+         ul(["Two factors: gravity condition and transfer.",
+             "Four arms, each read out for uptake and for persistence of activity."]),
+         fig(1, "f1_design", "Two by two design crossing static against clinostat with no transfer against transfer.",
+             "The two by two design. The microgravity and transfer arm is the condition of interest; the other three bound it."),
+
+         h("Protocol order"),
+         ol(["Draw blood.",
+             "Expose to simulated microgravity in a clinostat for a fixed duration.",
+             "Perform the transfer in blood, following the in-blood route.",
+             "Read out uptake and persistence."]),
+         fig(2, "f2_protocol", "Four step protocol from drawing blood to readout.",
+             "Protocol order. The exposure step is the only addition to the existing transfer protocol."),
+
+         h("Blocker"),
+         ul(["Requires a calibrated clinostat. A self-built unit would not make the experiment reproducible by other labs.",
+             "Microgravity is also queued as a dataset in the <a href=\"../disease_modeling/\">disease comparison work</a>, "
+             "so the wet-lab and computational sides can eventually be compared."]),
+     ]))
+
+# ============================================================== 03
+page("secondary_transfer",
+     "Secondary Mitochondrial Transfer", "Code done, in review", "done", "Computational",
+     "Rather than delivering isolated mitochondria directly, use a cell as the carrier. This project built a "
+     "single-cell pipeline across the immune system to rank which populations can receive, hold and redistribute "
+     "mitochondria. The myeloid progenitor ranks highest, with a highly specific surface marker but a narrow "
+     "tissue distribution.",
+     "\n".join([
+         photo(1, "nanotube_sem.png",
+               "Scanning electron micrograph of a T cell joined to a cancer cell by a single long nanotube.",
+               "Two cells joined by a single nanotube. Connections like this are the physical route cargo takes "
+               "between cells, and the reason a carrier cell is worth looking for."),
+
+         h("Rationale"),
+         ul(["Isolated mitochondria are fragile in transit and poorly taken up. That is the constraint from the "
+             "<a href=\"../neutrophil_transfer/\">wet-lab work</a>.",
+             "A cell that takes up mitochondria and delivers them elsewhere avoids exposing them to a buffer.",
+             "This makes delivery more controlled and potentially targeted."]),
+         fig(2, "f1_concept", "Direct transfer compared with transfer through an intermediate carrier cell.",
+             "Direct delivery against carrier-mediated delivery. The analysis is about who should play the middle role."),
+
+         h("Method"),
+         ul(["No prior single-cell experience. Two weeks at the start of July to learn data structures, normalisation, "
+             "pseudobulk analysis, batch structure and cell-state scoring.",
+             "The pipeline was rebuilt three times, each pass tightening normalisation and the scoring definition.",
+             "Now final and awaiting review."]),
+         fig(3, "f2_pipeline", "Five stage pipeline from single cell datasets to ranked candidates.",
+             "Analysis pipeline. Scoring combines uptake and donation programs rather than a single marker."),
+
+         h("Questions"),
+         ol(["Which pathways correlate with mitochondrial uptake and transfer?",
+             "Which immune cells are strongest at producing, receiving and donating mitochondria?",
+             "Which cells can reach each other, and which are best placed to donate?"]),
+
+         h("Results"),
+         ul(["Myeloid progenitor is the strongest candidate, at a composite score of 8.43.",
+             "Its marker, ITGA2B (CD41), is present in 87% of its cells against 3% across other cell types.",
+             "It is found in a single organ, which limits where it can be sourced.",
+             "Haematopoietic stem cells and progenitors score 5.49 but span 8 organs and 2,825 cells, with FLT3 (CD135) as the marker."]),
+         fig(4, "f3_scores", "Bar chart of composite carrier scores: 8.43 for myeloid progenitor, 5.49 for HSC and progenitors.",
+             "Composite carrier score for the two leading populations, with their tissue breadth alongside."),
+         fig(5, "f4_marker", "Bar chart showing ITGA2B present in 87 percent of myeloid progenitor cells against 3 percent elsewhere.",
+             "ITGA2B specificity. A marker this clean makes the population straightforward to sort for."),
+         """  <div class="table-wrap">
+  <table>
+    <caption>Table 1. Leading candidate carrier populations.</caption>
+    <thead><tr><th>Population</th><th class="num">Score</th><th>Marker</th><th>Breadth</th></tr></thead>
+    <tbody>
+      <tr><td>Myeloid progenitor</td><td class="num">8.43</td><td>ITGA2B (CD41)</td><td>1 organ</td></tr>
+      <tr><td>HSC / progenitors</td><td class="num">5.49</td><td>FLT3 (CD135)</td><td>8 organs, 2,825 cells</td></tr>
+    </tbody>
+  </table>
+  </div>""",
+
+         h("Trade-off"),
+         ul(["Highest score with the cleanest marker, but one organ.",
+             "Lower score, but broadly distributed and far easier to obtain.",
+             "Which matters more depends on whether the carrier has to be sourced from the patient."]),
+     ]),
+     [("Analysis code", GH)])
+
+# ============================================================== 04
+page("leukemia",
+     "Comparison against Disease: Leukemia", "Partially done", "ongoing", "Computational",
+     "The receiver-program pipeline was extended to disease. In acute myeloid leukemia against healthy donors, "
+     "mitochondrial genes are modestly but consistently up in T and NK cells, down in erythroid cells, and flat "
+     "elsewhere. Batch structure across studies is the limiting factor.",
+     "\n".join([
+         h("Objective"),
+         ul(["Identify and characterise mitochondrial receiver programs in a disease context.",
+             "Establish a comparison that holds up across datasets from different studies."]),
+
+         h("Method"),
+         ol(["Select patient and healthy donor datasets.",
+             "Harmonise batch structure and normalisation.",
+             "Aggregate to pseudobulk per cell type, per donor.",
+             "Score against mitochondrial gene sets, chiefly oxidative phosphorylation and mitochondrial ribosome genes.",
+             "Test per cell type. Run across 10 cell groups."]),
+         fig(1, "f1_pipeline", "Five stage disease comparison pipeline.",
+             "Disease comparison pipeline. Steps 1 and 2 are where most of the work sits."),
+
+         h("Results"),
+         ul(["T and NK cells: up, modest but consistent.",
+             "B cells: same direction, short of significance.",
+             "Erythroid cells: down.",
+             "Remaining cell types tested: no reliable signal.",
+             "Not every one of the 10 groups shows significant variation in pathways."]),
+         fig(2, "f2_direction", "Direction of change by cell type in AML against healthy donors.",
+             "Direction of change by cell type. Effect sizes are modest, so direction and consistency carry the result, not magnitude."),
+
+         h("Limits"),
+         ul(["Datasets come from different studies and experimental conditions, so batch correction drives the outcome.",
+             "Dataset selection for multi-disease comparison is still open.",
+             "Review of the code is still outstanding."]),
+     ]),
+     [("Analysis code", GH)])
+
+# ============================================================== 05
+page("disease_modeling",
+     "More Diseases and Organelle-Level Modeling", "Ongoing", "ongoing", "Computational",
+     "With leukemia complete, further disease comparisons are queued. The aim is a shared model of how mitochondrial "
+     "programs shift under perturbation: similar in concept to a virtual cell, but scoped to the organelle.",
+     "\n".join([
+         h("Queue"),
+         ul(["Microgravity, which pairs with the <a href=\"../microgravity_blood/\">wet-lab experiment</a>.",
+             "Infarct.", "Obesity.", "PCOS.", "Further conditions as suitable datasets appear."]),
+         fig(1, "f1_roadmap", "Completed and queued disease datasets feeding a shared model.",
+             "Each comparison adds one view of how mitochondrial programs shift. The model is only worth building once several agree."),
+
+         h("Objective"),
+         ul(["Combine the disease comparisons with the "
+             "<a href=\"../secondary_transfer/\">donor and receiver map</a>.",
+             "Model mitochondrial perturbation directly rather than inferring it from whole-cell behaviour."]),
+
+         h("Requirement"),
+         ul(["Enough disease datasets for the shared signal to separate from batch effects.",
+             "That threshold has not been reached yet."]),
+     ]))
+
+# ============================================================== 06
+page("chlorella",
+     "Cross-Species Transfer: Chlorella to Mammalian Cells", "Scheduled", "planned", "Wet lab",
+     "A pilot testing whether mitochondria from a photosynthetic alga are recognised and functionally tolerated by "
+     "mammalian recipient cells. The design distinguishes three outcomes, and all three are informative.",
+     "\n".join([
+         h("Objective"),
+         ul(["Determine whether mammalian cells take up Chlorella-derived mitochondria.",
+             "If they do, determine whether the mitochondria are retained or cleared."]),
+
+         h("Design"),
+         ol(["Culture Chlorella.",
+             "Isolate mitochondria.",
+             "Add to mammalian recipient cells.",
+             "Score against three outcomes: no uptake, transient uptake, functional tolerance."]),
+         fig(1, "f1_design", "Three step pilot design with three distinguishable outcomes.",
+             "Pilot design. The three outcomes are separable, so a negative result is still a result."),
+
+         h("Prior expectation"),
+         ul(["Most likely no uptake.",
+             "Otherwise transient uptake followed by clearance, on the grounds that these mitochondria are not efficient in a mammalian cell.",
+             "A functional effect would open the broader question of cross-species compatibility and the limits of mitochondrial transplantation."]),
+
+         h("Status"),
+         ul(["Waiting on the algae.", "Experiment scheduled for 20 September."]),
+     ]),
+     [("Protocol and supporting material", DRIVE)])
+
+# ============================================================== 07
+page("impact_review",
+     "Review, Impact Analysis and Dose Modeling", "Analysis done, writing", "done", "Review",
+     "A review of mitochondrial transfer carrying what appears to be the first combined ethical, environmental and "
+     "market assessment of the field, a dose-modeling proposal, and a case for revisiting mitochondrial transfer in IVF.",
+     "\n".join([
+         h("Structure"),
+         ul(["Ethical assessment.", "Environmental impact assessment.", "Market assessment.",
+             "Dose-modeling proposal.", "A case for reopening mitochondrial transfer in IVF.",
+             "The dose-modeling, environmental, ethical and market analyses sit in chapters 4 and 5."]),
+         fig(1, "f1_structure", "Five parts of the review, two of which were added after expert review.",
+             "Structure of the review. The last two parts were added as the scope grew."),
+
+         h("Dose modeling"),
+         ul(["No dosing basis currently exists for mitochondrial transfer.",
+             "Too small a dose produces no effect. Too large a dose adds material the recipient cell has to clear.",
+             "A usable window is therefore expected, and the proposal is to establish where it sits."]),
+         fig(2, "f2_dose", "Schematic dose response curve with a candidate therapeutic window.",
+             "Why a window is expected. Schematic: the shape is the argument, the position is what the proposal sets out to determine."),
+
+         h("How it grew"),
+         ul(["Started as a short piece.",
+             "Rewritten roughly five times as conversations with subject experts changed the scope each round.",
+             "The result is one argument rather than five separate notes."]),
+
+         h("Status"),
+         ul(["Analysis complete.", "Writing needs tightening.", "Figures and ordering still to be finalised."]),
+     ]),
+     [("Review document", REVIEW), ("Supporting material", DRIVE)])
+
+# ============================================================== 08
+page("archie",
+     "Shadowing the ARCHIE Project", "Done", "done", "Training",
+     "Training placement on a project performing mitochondrial transplantation into granulocytes. It established "
+     "that the working protocol differs from the published one at three points, each reducing mechanical stress on "
+     "the mitochondria.",
+     "\n".join([
+         h("Objective"),
+         ul(["Observe mitochondrial transplantation performed by a lab doing it routinely.",
+             "Compare the working protocol against the published one."]),
+
+         h("Findings"),
+         ol(["Cells are broken open by sonication rather than with a fine needle.",
+             "Filtration is kept to a minimum, to avoid damaging the mitochondria.",
+             "A different buffer is used.",
+             "Isolated mitochondria are highly sensitive, which is why the PORTER approach keeps them in blood instead."]),
+         fig(1, "f1_protocols", "Published protocol against the protocol used in the lab, differing at three steps.",
+             "Where the two protocols diverge. None of these differences are stated in the papers."),
+
+         h("Consequence"),
+         ul(["Explains the low uptake and rapid loss of activity in the "
+             "<a href=\"../neutrophil_transfer/\">neutrophil experiments</a>.",
+             "Turned a set of negative results into a defined next experiment."]),
+     ]))
+
+
+# =========================================================== render
 def render():
-    for slug, num, title, status, cls, kind, abstract, body, refs in PAGES:
-        i = ORDER.index(slug)
-        prev_ = ORDER[i - 1] if i > 0 else None
-        next_ = ORDER[i + 1] if i < len(ORDER) - 1 else None
-        nav = '<div class="next-prev">'
-        nav += f'<a class="pill" href="../{prev_}/">← {NAMES[prev_]}</a>' if prev_ else '<span></span>'
-        nav += f'<a class="pill dark" href="../{next_}/">{NAMES[next_]} →</a>' if next_ else '<a class="pill dark" href="../../index.html#projects">All projects →</a>'
-        nav += '</div>'
-        links = "".join(f'<li><a href="{u}">↗ {t}</a></li>' for t, u in refs)
-        links_block = f'<h2>Links</h2><ul class="links">{links}</ul>' if refs else ""
+    for i, slug in enumerate(ORDER):
+        p = PAGES[slug]
+        prev_, next_ = (ORDER[i - 1] if i else None), (ORDER[i + 1] if i < len(ORDER) - 1 else None)
+        nav = '  <div class="next-prev">'
+        nav += f'<a class="pill" href="../{prev_}/">&larr; {NAMES[prev_]}</a>' if prev_ else "<span></span>"
+        nav += (f'<a class="pill dark" href="../{next_}/">{NAMES[next_]} &rarr;</a>' if next_
+                else '<a class="pill dark" href="../../index.html#projects">All projects &rarr;</a>')
+        nav += "</div>"
+        links = "".join(f'<li><a href="{u}">&#8599; {t}</a></li>' for t, u in p["links"])
+        links_block = f'  <h2>Links</h2>\n  <ul class="links">{links}</ul>\n' if links else ""
         html = f"""<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{title} · Mito Work</title>
+  <title>{p['title']} &middot; Mitochondria</title>
   <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="../../index.html">Mito Work <span>· Primordia</span></a>
+    <a class="brand" href="../../index.html" aria-label="Home"><svg viewBox="0 0 40 18" width="40" height="18" aria-hidden="true"><rect x="1.4" y="1.4" width="37.2" height="15.2" rx="7.6" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M 8,9 Q 11,3.6 14,9 T 20,9 T 26,9 T 32,9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
     <nav class="nav-links">
       <a href="../../index.html#projects">Projects</a>
       <a href="{GH}">GitHub</a>
-      <a class="pill small" href="https://primordiagrants.com">Primordia ↗</a>
+      <a class="pill small" href="https://primordiagrants.com">Primordia &#8599;</a>
     </nav>
   </div>
 </header>
 
 <main class="wrap narrow">
-  <div class="back-row"><a class="pill small" href="../../index.html#projects">← All projects</a></div>
+  <div class="back-row"><a class="pill small" href="../../index.html#projects">&larr; All projects</a></div>
 
   <section class="p-hero grain">
     <div class="sheet">
-      <div class="tags"><span class="tag">Project {i + 1:02d}</span><span class="tag">{kind}</span><span class="tag {cls}">{status}</span></div>
-      <h1>{title}</h1>
+      <div class="tags"><span class="tag">Project {i + 1:02d}</span><span class="tag">{p['kind']}</span><span class="tag {p['cls']}">{p['status']}</span></div>
+      <h1>{p['title']}</h1>
     </div>
   </section>
 
   <article class="article">
-    <p class="lead">{abstract}</p>
-{clean(body)}
-    {links_block}
-    {nav}
+  <p class="lead">{p['lead']}</p>
+{p['body']}
+{links_block}{nav}
   </article>
 </main>
 
 <footer class="foot">
   <div class="wrap">
-    <span>Jules · Italy</span>
-    <span>Supported by <a href="https://primordiagrants.com">Primordia Grants</a> · <a href="{GH}">GitHub</a></span>
+    <span>Jules &middot; Italy</span>
+    <span>Supported by <a href="https://primordiagrants.com">Primordia Grants</a> &middot; <a href="{GH}">GitHub</a></span>
   </div>
 </footer>
 </body>
 </html>
 """
-        d = out / slug
+        d = OUT / slug
         d.mkdir(parents=True, exist_ok=True)
         (d / "index.html").write_text(html)
+    print(f"{len(ORDER)} project pages written")
 
-def fig(n, caption):
-    return f"""  <figure>
-    <div class="fig-placeholder grain"><span>figure coming soon</span></div>
-    <figcaption><b>Figure {n}.</b> {caption}</figcaption>
-  </figure>"""
 
-# 1.1 ---------------------------------------------------------------
-page("neutrophil_transfer", "1.1", "Mitochondrial Transfer into Neutrophils", "Ongoing", "ongoing", "Wet lab",
-"Between May and June I ran several experiments transferring isolated mitochondria into granulocytes. Uptake stayed low, and the transferred mitochondria lost detectable activity after about 20 minutes. Shadowing an active lab and talking with the PORTER team showed why: isolated mitochondria are very fragile, and uptake is genetically limited. Their approach keeps mitochondria in blood and stabilises them there, which matches what I had hypothesised.",
-f'''  <h2 class="sec"><span class="secnum">1</span>Timeline</h2>
-  <ul class="timeline">
-    <li><span class="when">May – June</span>Multiple mitochondrial transfer experiments in granulocytes.</li>
-    <li><span class="when">End of June</span>Reagent ordering, once grant money reached the lab account. Ordering needed the lab ID, so I could not do it alone.</li>
-    <li><span class="when">Sep 19</span>Planned run at the Stanford lab. Postponed because the professor had to leave town.</li>
-    <li><span class="when">Sep 22</span>Rescheduled run: a variation of the PORTER-style experiment.</li>
-  </ul>
-
-  <h2 class="sec"><span class="secnum">2</span>First attempts</h2>
-  <p>Uptake was low in every run. Based on the fluorescent activity assay, the mitochondria that did get in consistently
-  lost signs of activity after roughly 20 minutes. My first idea was that lipid-mediated delivery might fix this.</p>
-
-  <h2 class="sec"><span class="secnum">3</span>What changed my mind</h2>
-  <p>While shadowing Coco in the lab (see <a href="../archie/">project 1.8</a>), I learned that mitochondrial extraction is done
-  quite differently from what the published papers suggest. The lab uses a gentler protocol, with less filtration, a different
-  buffer and a different way of breaking the cells open, all to avoid damaging the mitochondria.</p>
-  <p>In parallel, the <a href="../secondary_transfer/">secondary transfer analysis</a> suggested that mitochondrial uptake is
-  genetically limited. I discussed this with the PORTER team, who use the PORTER machine to transfer mitochondria into neutrophils.
-  Instead of extracting mitochondria, they keep them in blood, stabilise them to preserve their activity, and do the transfer
-  in that environment.</p>
-  <span class="note">their result is what I expected, but it isn't published yet, so I couldn't have known from the literature</span>
-
-  <h2 class="sec"><span class="secnum">4</span>Results so far</h2>
-  <p>My initial hypothesis about granulocytes was correct, even though I had no way to test it at the time.
-  The useful negative result is that isolated mitochondria seem too fragile for this cell type without stabilisation.</p>
-  <blockquote class="quote"><p>“Science, my lad, is made up of mistakes, but they are mistakes which it is useful to make, because they lead little by little to the truth.”</p><cite>Jules Verne, <i>Journey to the Center of the Earth</i></cite></blockquote>
-
-  <h2 class="sec"><span class="secnum">5</span>Next steps</h2>
-  <ul>
-    <li>Run a variation of the PORTER-style experiment.</li>
-    <li>If time runs out here, try to reproduce it in Italy. I won't have a PORTER machine there, and I worry the mitochondria are too sensitive to survive without it.</li>
-    <li>Run the <a href="../microgravity_blood/">microgravity variation</a>.</li>
-  </ul>''',
-[("Protocol (Italy)", PROTO_IT)])
-
-# 1.2 ---------------------------------------------------------------
-page("microgravity_blood", "1.2", "Mitochondrial Transfer in Blood after Microgravity", "Planned", "planned", "Wet lab",
-"A planned variation of the neutrophil transfer experiment. Blood would first be exposed to simulated microgravity, then used for mitochondrial transfer, to see whether the altered environment changes uptake or activity.",
-'''  <h2 class="sec"><span class="secnum">1</span>Idea</h2>
-  <p>This is one of the variations of <a href="../neutrophil_transfer/">project 1.1</a> I would most like to run.
-  The question is whether exposure to microgravity changes how blood cells take up and keep mitochondria.</p>
-
-  <h2 class="sec"><span class="secnum">2</span>Status</h2>
-  <p>I am looking for a clinostat. I can't just use one I build myself, because the experiment needs to be reproducible
-  by other labs.</p>
-  <span class="note">if you have a clinostat I could borrow, please reach out!</span>
-
-  <h2 class="sec"><span class="secnum">3</span>Connection to other work</h2>
-  <p>Microgravity is also queued as a dataset in the <a href="../disease_modeling/">disease comparison work</a>,
-  so the wet-lab and computational sides can eventually be compared.</p>''',
-[])
-
-# 1.3 ---------------------------------------------------------------
-page("secondary_transfer", "1.3", "Secondary Mitochondrial Transfer", "Code done · in review", "done", "Computational",
-"The idea is to use cells as “Uber vehicles” for mitochondria. Instead of transferring isolated mitochondria directly, we identify or engineer cells that can take up mitochondria and deliver them to specific recipient cells. I built a single-cell RNA-seq pipeline across the immune system to find which cells are the best candidates to receive, carry and redistribute mitochondria, and which biological programs drive successful uptake. The strongest candidate is the myeloid progenitor.",
-f'''  <h2 class="sec"><span class="secnum">1</span>Motivation</h2>
-  <p>In principle, one cell could act as a mitochondrial donor or carrier and deliver mitochondria to another cell type.
-  That would allow more controlled and potentially targeted delivery than injecting fragile isolated mitochondria.</p>
-
-  <h2 class="sec"><span class="secnum">2</span>Method</h2>
-  <p>I had never worked with single-cell data before. At the start of July I spent about two weeks learning single-cell
-  RNA-seq analysis from zero: data structures, normalisation, pseudobulk analysis, batch structure and cell-state scoring.</p>
-  <p>I then built the pipeline and reworked it about three times, refining the method and validating the results each round.
-  The pipeline is now final and waiting for review.</p>
-
-  <h3 class="sub">2.1 Questions the pipeline answers</h3>
-  <ol>
-    <li>Which pathways correlate with mitochondrial uptake and transfer?</li>
-    <li>Which immune cells are strongest at producing, receiving and donating mitochondria?</li>
-    <li>Which cells can talk to each other, and which immune cells are best at donating to others?</li>
-  </ol>
-
-{fig(1, "Pathway correlation.")}
-{fig(2, "Immune cells with the strongest ability to produce, receive and donate mitochondria.")}
-{fig(3, "Cell–cell communication: which immune cells are best placed to donate.")}
-
-  <h2 class="sec"><span class="secnum">3</span>Results</h2>
-  <div class="table-wrap">
-  <table>
-    <caption><b>Table 1:</b> Top candidate carrier populations and their best surface markers.</caption>
-    <thead><tr><th>Cell population</th><th class="num">Score</th><th>Best marker</th><th>Notes</th></tr></thead>
-    <tbody>
-      <tr><td>Myeloid progenitor</td><td class="num">8.43</td><td>ITGA2B (CD41)</td><td>In 87% of its cells vs 3% of other types. Found in only 1 organ.</td></tr>
-      <tr><td>HSC / progenitors</td><td class="num">5.49</td><td>FLT3 (CD135)</td><td>8 organs, 2,825 cells.</td></tr>
-    </tbody>
-  </table>
-  </div>
-  <p>The myeloid progenitor scores highest and has a very specific marker, but it appears in a single organ.
-  Haematopoietic stem cells and progenitors score lower, yet are found much more broadly, which may make them more practical.</p>''',
-[("Analysis code: github.com/July98293/mito", GH)])
-
-# 1.4 ---------------------------------------------------------------
-page("leukemia", "1.4", "Comparison against Disease: Leukemia", "Partially done", "ongoing", "Computational",
-"I built a pipeline to identify and characterise mitochondrial receiver programs in disease contexts, starting with acute myeloid leukemia (AML). Compared with healthy donors, mitochondrial genes are modestly but consistently up in T and NK cells, down in erythroid cells, and show no reliable signal elsewhere.",
-f'''  <h2 class="sec"><span class="secnum">1</span>Approach</h2>
-  <p>The pipeline reuses the foundation of <a href="../secondary_transfer/">project 1.3</a> and applies it to disease datasets.
-  Because datasets come from different studies and conditions, much of the work is choosing comparable datasets and building
-  robust batch correction and normalisation.</p>
-
-{fig(1, "Data used.")}
-{fig(2, "Mitochondrial genes that vary most between leukemia and healthy donors in T cells.")}
-
-  <p>The same analysis was re-run for 10 cell groups. Not every group shows significant pathway changes.</p>
-
-{fig(3, "Re-run across 10 cell groups.")}
-{fig(4, "Final check: cell types against the mitochondrial pathways affected.")}
-
-  <h2 class="sec"><span class="secnum">2</span>Results</h2>
-  <div class="table-wrap">
-  <table>
-    <caption><b>Table 1:</b> Mitochondrial gene expression in AML vs healthy donors, by cell type.</caption>
-    <thead><tr><th>Cell type</th><th>Direction</th><th>Notes</th></tr></thead>
-    <tbody>
-      <tr><td>T cells</td><td>↑ up</td><td>Modest but consistent. Driven by oxidative-phosphorylation and mitochondrial-ribosome genes.</td></tr>
-      <tr><td>NK cells</td><td>↑ up</td><td>Same pattern as T cells.</td></tr>
-      <tr><td>B cells</td><td>↑ trend</td><td>Same direction, just short of significance.</td></tr>
-      <tr><td>Erythroid</td><td>↓ down</td><td></td></tr>
-      <tr><td>Other types tested</td><td>—</td><td>No reliable signal.</td></tr>
-    </tbody>
-  </table>
-  </div>
-
-  <h2 class="sec"><span class="secnum">3</span>Status</h2>
-  <p>The code is partially complete and still needs review. I am evaluating which datasets are best for comparing
-  several diseases at once.</p>''',
-[("Analysis code: github.com/July98293/mito", GH)])
-
-# 1.5 ---------------------------------------------------------------
-page("disease_modeling", "1.5", "More Diseases and Organelle-Level Modeling", "Ongoing", "ongoing", "Computational",
-"After leukemia, comparisons against microgravity, infarct, obesity, PCOS and other conditions are queued, together with integration into the secondary transfer project. With enough disease datasets, we could start modeling mitochondrial perturbations computationally: similar in concept to a virtual cell, but focused on the organelle.",
-'''  <h2 class="sec"><span class="secnum">1</span>Queue</h2>
-  <ul>
-    <li>Microgravity</li>
-    <li>Infarct</li>
-    <li>Obesity</li>
-    <li>PCOS</li>
-    <li>Others to come</li>
-  </ul>
-
-  <h2 class="sec"><span class="secnum">2</span>Where this is going</h2>
-  <p>Each new disease adds a view of how mitochondrial programs shift across cell types. Combined with the
-  <a href="../secondary_transfer/">donor and receiver map</a>, this could become a focused model of mitochondrial
-  perturbations, a kind of "virtual mitochondrion".</p>
-  <span class="note">ambitious, I know. one dataset at a time</span>''',
-[])
-
-# 1.6 ---------------------------------------------------------------
-page("chlorella", "1.6", "Cross-Species Mitochondrial Transfer: Chlorella → Mammalian Cells", "Scheduled", "planned", "Wet lab",
-"A pilot experiment testing whether mitochondria from a photosynthetic eukaryote, the alga Chlorella, can be recognised and functionally tolerated by mammalian recipient cells. A positive effect would open broader questions about cross-species mitochondrial compatibility, uptake, and the limits of mitochondrial transplantation.",
-'''  <h2 class="sec"><span class="secnum">1</span>Hypothesis</h2>
-  <p>I suspect it won't work. Or maybe the mitochondria will be used for a while and then expelled because they are not efficient enough.
-  Either outcome is informative.</p>
-
-  <h2 class="sec"><span class="secnum">2</span>Status</h2>
-  <ul class="timeline">
-    <li><span class="when">Sep</span>Waiting for the algae to arrive.</li>
-    <li><span class="when">Sep 20</span>Experiment scheduled.</li>
-  </ul>''',
-[("Protocol for the plant experiment (Drive folder)", DRIVE)])
-
-# 1.7 ---------------------------------------------------------------
-page("impact_review", "1.7", "Review, Impact Analysis and Dose Modeling", "Analysis done · writing", "done", "Review",
-"A review of mitochondrial transfer that includes what I believe is the first combined ethical, environmental and market assessment of the field. It also proposes a dose-modeling approach and puts together a case for revisiting mitochondrial transfer in IVF.",
-'''  <h2 class="sec"><span class="secnum">1</span>How it grew</h2>
-  <p>I initially thought this would be a quick win. I ended up rewriting it about five times, because every conversation with
-  experts on the topic changed something. It is much better for it.</p>
-  <span class="note">the "side quest" of dose modeling turned into its own chapter</span>
-
-  <h2 class="sec"><span class="secnum">2</span>Contents</h2>
-  <ul>
-    <li>Ethical assessment</li>
-    <li>Environmental impact assessment</li>
-    <li>Market assessment</li>
-    <li>Dose-modeling proposal</li>
-    <li>A case for reopening mitochondrial transfer in IVF</li>
-  </ul>
-  <p>The dose-modeling, environmental, ethical and market analyses are in chapters 4 and 5 of the review.</p>
-
-  <h2 class="sec"><span class="secnum">3</span>Status</h2>
-  <p>The analysis is complete. The writing needs polishing, and the figures and ordering still need to be finalised.</p>''',
-[("Review document", REVIEW), ("Supporting material (Drive folder)", DRIVE)])
-
-# 1.8 ---------------------------------------------------------------
-page("archie", "1.8", "Shadowing the ARCHIE Project", "Done", "done", "Training",
-"I shadowed the ARCHIE project to learn how mitochondrial transplantation into granulocytes is done in practice. I learned a different wet-lab approach using the PORTER machine, which directly reshaped my own neutrophil experiments.",
-'''  <h2 class="sec"><span class="secnum">1</span>What I learned</h2>
-  <ul>
-    <li>Mitochondrial extraction in practice differs a lot from what published papers describe, with a gentler protocol overall.</li>
-    <li>The PORTER approach keeps mitochondria in blood and stabilises them, instead of isolating them.</li>
-    <li>Isolated mitochondria are highly sensitive, which explains my earlier results.</li>
-  </ul>
-
-  <h2 class="sec"><span class="secnum">2</span>Why it mattered</h2>
-  <p>This training is what turned my May–June negative results into a clear next experiment. See
-  <a href="../neutrophil_transfer/">project 1.1</a>.</p>''',
-[])
 render()
-print("ok")

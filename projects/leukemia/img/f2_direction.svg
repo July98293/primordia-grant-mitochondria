@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 262" role="img" aria-labelledby="ti de">
+  <title id="ti">Direction of change in mitochondrial gene expression, AML against healthy donors</title>
+  <desc id="de">T and NK cells move up, B cells trend up without reaching significance, erythroid cells move down, other cell types show no reliable signal.</desc>
+  <style>
+    text { font-family: "Jost","Avenir Next","Futura","Century Gothic",system-ui,sans-serif; fill: #24233a; }
+    .t  { font-size: 15px; font-weight: 600; fill: #16152b; }
+    .s  { font-size: 13px; }
+    .xs { font-size: 11.5px; fill: #5f5d7a; }
+    .num { font-size: 13px; font-weight: 600; fill: #16152b; }
+    .box { fill: #ece7f8; stroke: #3a3fb8; stroke-width: 2; }
+    .boxw { fill: #faf8ff; stroke: #3a3fb8; stroke-width: 2; }
+    .dash { fill: none; stroke: #3a3fb8; stroke-width: 2; stroke-dasharray: 6 5; }
+    .arr { fill: none; stroke: #3a3fb8; stroke-width: 2; marker-end: url(#a); }
+    .ax { stroke: #8b87a8; stroke-width: 1.5; }
+    .gl { stroke: #ded9ec; stroke-width: 1; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#3a3fb8"/>
+    </marker>
+  </defs>
+<line class="ax" x1="400" y1="30" x2="400" y2="214"/>
+<text class="xs" x="400" y="24" text-anchor="middle">no change</text>
+<text class="s" x="250" y="56" text-anchor="end" dominant-baseline="middle">T cells</text>
+<line x1="400" y1="56" x2="510" y2="56" stroke="#7d5ff0" stroke-width="3"/>
+<circle cx="510" cy="56" r="8" fill="#7d5ff0" stroke="#7d5ff0" stroke-width="2.5"/>
+<text class="xs" x="548" y="56" dominant-baseline="middle">up, consistent</text>
+<text class="s" x="250" y="92" text-anchor="end" dominant-baseline="middle">NK cells</text>
+<line x1="400" y1="92" x2="510" y2="92" stroke="#7d5ff0" stroke-width="3"/>
+<circle cx="510" cy="92" r="8" fill="#7d5ff0" stroke="#7d5ff0" stroke-width="2.5"/>
+<text class="xs" x="548" y="92" dominant-baseline="middle">up, consistent</text>
+<text class="s" x="250" y="128" text-anchor="end" dominant-baseline="middle">B cells</text>
+<line x1="400" y1="128" x2="510" y2="128" stroke="#7d5ff0" stroke-width="3"/>
+<circle cx="510" cy="128" r="8" fill="#faf8ff" stroke="#7d5ff0" stroke-width="2.5"/>
+<text class="xs" x="548" y="128" dominant-baseline="middle">same direction, not significant</text>
+<text class="s" x="250" y="164" text-anchor="end" dominant-baseline="middle">Erythroid</text>
+<line x1="400" y1="164" x2="290" y2="164" stroke="#3f8fd4" stroke-width="3"/>
+<circle cx="290" cy="164" r="8" fill="#3f8fd4" stroke="#3f8fd4" stroke-width="2.5"/>
+<text class="xs" x="548" y="164" dominant-baseline="middle">down, consistent</text>
+<text class="s" x="250" y="200" text-anchor="end" dominant-baseline="middle">Other types tested</text>
+<circle cx="400" cy="200" r="7" fill="none" stroke="#a9a4c0" stroke-width="2"/>
+<text class="xs" x="548" y="200" dominant-baseline="middle">no reliable signal</text>
+<text class="xs" x="12" y="246">Filled marker: significant. Open marker: same direction, not significant. Effect sizes are modest; horizontal positions are qualitative.</text>
+</svg>
