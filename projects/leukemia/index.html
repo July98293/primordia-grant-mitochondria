@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Comparison against Disease: Leukemia · Mito Work</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../../index.html">Mito Work <span>· Primordia</span></a>
+    <nav class="nav-links">
+      <a href="../../index.html#projects">Projects</a>
+      <a href="https://github.com/July98293/mito">GitHub</a>
+      <a class="pill small" href="https://primordiagrants.com">Primordia ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap narrow">
+  <div class="back-row"><a class="pill small" href="../../index.html#projects">← All projects</a></div>
+
+  <section class="p-hero grain">
+    <div class="sheet">
+      <div class="tags"><span class="tag">Project 04</span><span class="tag">Computational</span><span class="tag ongoing">Partially done</span></div>
+      <h1>Comparison against Disease: Leukemia</h1>
+    </div>
+  </section>
+
+  <article class="article">
+    <p class="lead">I built a pipeline to identify and characterise mitochondrial receiver programs in disease contexts, starting with acute myeloid leukemia (AML). Compared with healthy donors, mitochondrial genes are modestly but consistently up in T and NK cells, down in erythroid cells, and show no reliable signal elsewhere.</p>
+  <h2 class="sec">Approach</h2>
+  <p>The pipeline reuses the foundation of <a href="../secondary_transfer/">the secondary transfer project</a> and applies it to disease datasets.
+  Because datasets come from different studies and conditions, much of the work is choosing comparable datasets and building
+  robust batch correction and normalisation.</p>
+
+  <figure>
+    <div class="fig-placeholder grain"><span>figure coming soon</span></div>
+    <figcaption><b>Figure 1.</b> Data used.</figcaption>
+  </figure>
+  <figure>
+    <div class="fig-placeholder grain"><span>figure coming soon</span></div>
+    <figcaption><b>Figure 2.</b> Mitochondrial genes that vary most between leukemia and healthy donors in T cells.</figcaption>
+  </figure>
+
+  <p>The same analysis was re-run for 10 cell groups. Not every group shows significant pathway changes.</p>
+
+  <figure>
+    <div class="fig-placeholder grain"><span>figure coming soon</span></div>
+    <figcaption><b>Figure 3.</b> Re-run across 10 cell groups.</figcaption>
+  </figure>
+  <figure>
+    <div class="fig-placeholder grain"><span>figure coming soon</span></div>
+    <figcaption><b>Figure 4.</b> Final check: cell types against the mitochondrial pathways affected.</figcaption>
+  </figure>
+
+  <h2 class="sec">Results</h2>
+  <div class="table-wrap">
+  <table>
+    <caption><b>Table 1:</b> Mitochondrial gene expression in AML vs healthy donors, by cell type.</caption>
+    <thead><tr><th>Cell type</th><th>Direction</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>T cells</td><td>↑ up</td><td>Modest but consistent. Driven by oxidative-phosphorylation and mitochondrial-ribosome genes.</td></tr>
+      <tr><td>NK cells</td><td>↑ up</td><td>Same pattern as T cells.</td></tr>
+      <tr><td>B cells</td><td>↑ trend</td><td>Same direction, just short of significance.</td></tr>
+      <tr><td>Erythroid</td><td>↓ down</td><td></td></tr>
+      <tr><td>Other types tested</td><td>—</td><td>No reliable signal.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2 class="sec">Status</h2>
+  <p>The code is partially complete and still needs review. I am evaluating which datasets are best for comparing
+  several diseases at once.</p>
+    <h2>Links</h2><ul class="links"><li><a href="https://github.com/July98293/mito">↗ Analysis code: github.com/July98293/mito</a></li></ul>
+    <div class="next-prev"><a class="pill" href="../secondary_transfer/">← Secondary Mitochondrial Transfer</a><a class="pill dark" href="../disease_modeling/">More Diseases and Organelle-Level Modeling →</a></div>
+  </article>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>Jules · Italy</span>
+    <span>Supported by <a href="https://primordiagrants.com">Primordia Grants</a> · <a href="https://github.com/July98293/mito">GitHub</a></span>
+  </div>
+</footer>
+</body>
+</html>

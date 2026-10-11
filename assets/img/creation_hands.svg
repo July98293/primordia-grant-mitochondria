@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 250" role="img" aria-labelledby="ttl desc">
+  <title id="ttl">Two hands almost touching, with a mitochondrion in the gap</title>
+  <desc id="desc">A simplified line drawing after Michelangelo's Creation of Adam. Instead of a spark, a mitochondrion passes between the two fingertips.</desc>
+  <defs>
+    <radialGradient id="spark" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#9a84f5" stop-opacity=".8"/>
+      <stop offset="60%" stop-color="#b3a2f7" stop-opacity=".25"/>
+      <stop offset="100%" stop-color="#b3a2f7" stop-opacity="0"/>
+    </radialGradient>
+
+    <g id="hand" stroke="#3a3fb8" stroke-linecap="round" stroke-linejoin="round">
+      <path fill="#ece7f8" stroke-width="3.6" d="
+        M -10,74
+        C 30,72 72,72 112,76
+        C 120,66 132,62 144,64
+        C 160,50 180,42 196,42
+        C 208,42 209,56 198,60
+        C 190,66 184,72 192,80
+        C 202,86 210,92 215,102
+        C 220,114 221,130 216,143
+        A 16 18 0 0 0 186,143
+        A 16 18 0 0 0 156,143
+        A 16 18 0 0 0 126,143
+        C 119,138 113,132 111,124
+        C 72,128 32,128 -10,127 Z"/>
+      <path fill="#ece7f8" stroke-width="3.4" d="
+        M 196,95
+        C 228,96 256,100 274,103
+        C 286,105 286,118 274,120
+        C 254,123 226,125 196,122
+        C 189,115 189,102 196,95 Z"/>
+      <path fill="none" stroke-width="2.2" opacity=".6" d="M 192,80 C 184,76 176,72 168,70"/>
+      <path fill="none" stroke-width="2.1" opacity=".5" d="M 189,145 C 192,134 190,126 186,120"/>
+      <path fill="none" stroke-width="2.1" opacity=".5" d="M 159,145 C 162,134 160,125 155,119"/>
+      <path fill="none" stroke-width="2.1" opacity=".42" d="M 129,144 C 131,135 129,128 125,123"/>
+      <path fill="none" stroke-width="2.1" opacity=".42" d="M 112,76 C 111,90 112,104 116,116"/>
+    </g>
+  </defs>
+
+  <circle cx="350" cy="122" r="58" fill="url(#spark)"/>
+
+  <!-- God's hand, from the left -->
+  <use href="#hand" transform="translate(22,-4)"/>
+  <!-- Adam's hand, from the right: lower, slacker, tilted -->
+  <use href="#hand" transform="translate(700,0) scale(-1,1) translate(20,34) rotate(-7,250,120)"/>
+
+  <!-- the spark, as a mitochondrion -->
+  <g transform="translate(350,122) rotate(-20)">
+    <rect x="-19" y="-8" width="38" height="16" rx="8" fill="#b3a2f7" stroke="#3a3fb8" stroke-width="2.6"/>
+    <path d="M -11,0 Q -8,-4.5 -5,0 T 1,0 T 7,0 T 13,0" fill="none" stroke="#3a3fb8" stroke-width="1.9" stroke-linecap="round"/>
+  </g>
+</svg>

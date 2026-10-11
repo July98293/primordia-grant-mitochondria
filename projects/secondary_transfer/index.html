@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Secondary Mitochondrial Transfer · Mito Work</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../../index.html">Mito Work <span>· Primordia</span></a>
+    <nav class="nav-links">
+      <a href="../../index.html#projects">Projects</a>
+      <a href="https://github.com/July98293/mito">GitHub</a>
+      <a class="pill small" href="https://primordiagrants.com">Primordia ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap narrow">
+  <div class="back-row"><a class="pill small" href="../../index.html#projects">← All projects</a></div>
+
+  <section class="p-hero grain">
+    <div class="sheet">
+      <div class="tags"><span class="tag">Project 03</span><span class="tag">Computational</span><span class="tag done">Code done · in review</span></div>
+      <h1>Secondary Mitochondrial Transfer</h1>
+    </div>
+  </section>
+
+  <article class="article">
+    <p class="lead">The idea is to use cells as “Uber vehicles” for mitochondria. Instead of transferring isolated mitochondria directly, we identify or engineer cells that can take up mitochondria and deliver them to specific recipient cells. I built a single-cell RNA-seq pipeline across the immune system to find which cells are the best candidates to receive, carry and redistribute mitochondria, and which biological programs drive successful uptake. The strongest candidate is the myeloid progenitor.</p>
+  <h2 class="sec">Motivation</h2>
+  <p>In principle, one cell could act as a mitochondrial donor or carrier and deliver mitochondria to another cell type.
+  That would allow more controlled and potentially targeted delivery than injecting fragile isolated mitochondria.</p>
+
+  <h2 class="sec">Method</h2>
+  <p>I had never worked with single-cell data before. At the start of July I spent about two weeks learning single-cell
+  RNA-seq analysis from zero: data structures, normalisation, pseudobulk analysis, batch structure and cell-state scoring.</p>
+  <p>I then built the pipeline and reworked it about three times, refining the method and validating the results each round.
+  The pipeline is now final and waiting for review.</p>
+
+  <h3 class="sub">Questions the pipeline answers</h3>
+  <ol>
+    <li>Which pathways correlate with mitochondrial uptake and transfer?</li>
+    <li>Which immune cells are strongest at producing, receiving and donating mitochondria?</li>
+    <li>Which cells can talk to each other, and which immune cells are best at donating to others?</li>
+  </ol>
+
+  <figure>
+    <div class="fig-placeholder grain"><span>figure coming soon</span></div>
+    <figcaption><b>Figure 1.</b> Pathway correlation.</figcaption>
+  </figure>
+  <figure>
+    <div class="fig-placeholder grain"><span>figure coming soon</span></div>
+    <figcaption><b>Figure 2.</b> Immune cells with the strongest ability to produce, receive and donate mitochondria.</figcaption>
+  </figure>
+  <figure>
+    <div class="fig-placeholder grain"><span>figure coming soon</span></div>
+    <figcaption><b>Figure 3.</b> Cell–cell communication: which immune cells are best placed to donate.</figcaption>
+  </figure>
+
+  <h2 class="sec">Results</h2>
+  <div class="table-wrap">
+  <table>
+    <caption><b>Table 1:</b> Top candidate carrier populations and their best surface markers.</caption>
+    <thead><tr><th>Cell population</th><th class="num">Score</th><th>Best marker</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Myeloid progenitor</td><td class="num">8.43</td><td>ITGA2B (CD41)</td><td>In 87% of its cells vs 3% of other types. Found in only 1 organ.</td></tr>
+      <tr><td>HSC / progenitors</td><td class="num">5.49</td><td>FLT3 (CD135)</td><td>8 organs, 2,825 cells.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>The myeloid progenitor scores highest and has a very specific marker, but it appears in a single organ.
+  Haematopoietic stem cells and progenitors score lower, yet are found much more broadly, which may make them more practical.</p>
+    <h2>Links</h2><ul class="links"><li><a href="https://github.com/July98293/mito">↗ Analysis code: github.com/July98293/mito</a></li></ul>
+    <div class="next-prev"><a class="pill" href="../microgravity_blood/">← Mitochondrial Transfer in Blood after Microgravity</a><a class="pill dark" href="../leukemia/">Comparison against Disease: Leukemia →</a></div>
+  </article>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>Jules · Italy</span>
+    <span>Supported by <a href="https://primordiagrants.com">Primordia Grants</a> · <a href="https://github.com/July98293/mito">GitHub</a></span>
+  </div>
+</footer>
+</body>
+</html>

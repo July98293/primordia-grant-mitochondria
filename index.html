@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mito Work · Primordia</title>
+  <meta name="description" content="Jules's repository of work on mitochondria, supported by a Primordia microgrant.">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">Mito Work <span>· Primordia</span></a>
+    <nav class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="https://github.com/July98293/mito">GitHub</a>
+      <a class="pill small" href="https://primordiagrants.com">Primordia ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="home">
+
+    <section class="intro">
+      <h1 class="hello">Hi, I'm Jules.</h1>
+      <p class="lede">I'm from Italy, and this is my repository of work on mitochondria.</p>
+      <p>With a microgrant from <a href="https://primordiagrants.com">Primordia</a>, I spent the past months trying to move
+      mitochondria from one cell to another, at the bench and on the computer. The work covers wet-lab experiments on
+      transferring mitochondria into immune cells, computational pipelines that look for the cells best suited to receive
+      and pass on mitochondria, disease comparisons, a cross-species pilot, and an ethical, environmental and market review
+      of the field.</p>
+      <p>Each project opens to its own page with the full lab notes, including the things that didn't work.</p>
+      <blockquote class="quote">
+        <p>“Science, my lad, is made up of mistakes, but they are mistakes which it is useful to make, because they lead little by little to the truth.”</p>
+        <cite>Jules Verne, <i>Journey to the Center of the Earth</i></cite>
+      </blockquote>
+      <div class="cta">
+        <div><a class="pill dark" href="#projects">See the projects</a><small>8 projects · wet lab + computational</small></div>
+        <div><a class="pill" href="https://github.com/July98293/mito">Code on GitHub</a><small>github.com/July98293/mito</small></div>
+      </div>
+    </section>
+
+
+      <section class="why grain" aria-labelledby="why-h">
+        <h2 id="why-h">Why I like this work</h2>
+        <p>Mitochondria make most of the ATP a cell runs on, so they sit underneath almost everything the body does:
+        energy, metabolism, and much of how cells are regulated. That puts them upstream of far more than any single disease.</p>
+        <p>They also have the best origin story in biology. They were free-living bacteria that moved into another cell and
+        never left. Cells have been handing them to each other ever since. If we learned to direct that, we would be
+        engineering endosymbiosis on purpose.</p>
+
+        <div class="why-figs">
+          <figure>
+            <img src="assets/img/nanotube_sem.png" alt="Scanning electron micrograph of a T cell connected to a cancer cell by a long thin nanotube.">
+            <figcaption><b>A.</b> A T cell and a cancer cell, joined by a single nanotube. Cargo, including mitochondria, moves along it.</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/img/creation_hands.svg" alt="Line drawing after Michelangelo's Creation of Adam, with a mitochondrion in the gap between the fingertips.">
+            <figcaption><b>B.</b> Michelangelo, <i>The Creation of Adam</i>, 1512. Same composition. The spark is just better characterised now.</figcaption>
+          </figure>
+        </div>
+        <p class="why-kicker">Two cells, reaching across a gap, passing on the thing that makes life run. It took 500 years
+        and an electron microscope to find out the fresco was a cell biology diagram.</p>
+      </section>
+
+    <aside class="anim-col" aria-label="Animation of cells exchanging mitochondria">
+      <div class="anim-panel grain">
+        <canvas id="mito-canvas" role="img" aria-label="Cells passing mitochondria to each other through nanotubes and vesicles"></canvas>
+        <div class="anim-caption">
+          <b>Cells sharing mitochondria</b>
+          The well-stocked cell in the middle divides its mitochondria and hands them out through nanotubes and vesicles.
+        </div>
+      </div>
+    </aside>
+
+    <section class="list" id="projects">
+      <h2 class="big">What I worked on</h2>
+      <span class="note">tap a project to open it</span>
+      <div class="cards">
+
+        <details class="card">
+          <summary>
+            <span class="num">01</span><span class="ttl">Mitochondrial transfer into neutrophils</span><span class="plus">+</span>
+            <span class="tags"><span class="tag">Wet lab</span><span class="tag ongoing">Ongoing</span></span>
+          </summary>
+          <div class="inner">
+            <p>Transferring mitochondria into granulocytes. Uptake stayed low and the mitochondria lost activity after about
+            20 minutes. That pointed to a different approach: keep mitochondria in blood and stabilise them there.</p>
+            <a class="pill dark small" href="projects/neutrophil_transfer/">Open project →</a>
+          </div>
+        </details>
+
+        <details class="card">
+          <summary>
+            <span class="num">02</span><span class="ttl">Mitochondrial transfer in blood after microgravity</span><span class="plus">+</span>
+            <span class="tags"><span class="tag">Wet lab</span><span class="tag planned">Planned</span></span>
+          </summary>
+          <div class="inner">
+            <p>The same experiment, on blood exposed to simulated microgravity first. I'm looking for a clinostat, because
+            this needs to be reproducible.</p>
+            <a class="pill dark small" href="projects/microgravity_blood/">Open project →</a>
+          </div>
+        </details>
+
+        <details class="card">
+          <summary>
+            <span class="num">03</span><span class="ttl">Secondary mitochondrial transfer</span><span class="plus">+</span>
+            <span class="tags"><span class="tag">Computational</span><span class="tag done">Code done · in review</span></span>
+          </summary>
+          <div class="inner">
+            <p>Using cells as "Uber vehicles" for mitochondria. A single-cell pipeline across the immune system to find which
+            cells are best at receiving, carrying and donating mitochondria.</p>
+            <a class="pill dark small" href="projects/secondary_transfer/">Open project →</a>
+          </div>
+        </details>
+
+        <details class="card">
+          <summary>
+            <span class="num">04</span><span class="ttl">Comparison against disease: leukemia</span><span class="plus">+</span>
+            <span class="tags"><span class="tag">Computational</span><span class="tag ongoing">Partially done</span></span>
+          </summary>
+          <div class="inner">
+            <p>How mitochondrial programs change between people with acute myeloid leukemia and healthy donors, one cell type at a time.</p>
+            <a class="pill dark small" href="projects/leukemia/">Open project →</a>
+          </div>
+        </details>
+
+        <details class="card">
+          <summary>
+            <span class="num">05</span><span class="ttl">More diseases and organelle-level modeling</span><span class="plus">+</span>
+            <span class="tags"><span class="tag">Computational</span><span class="tag ongoing">Ongoing</span></span>
+          </summary>
+          <div class="inner">
+            <p>Microgravity, infarct, obesity, PCOS and more are queued. The long-term idea is a "virtual cell", but for the mitochondrion.</p>
+            <a class="pill dark small" href="projects/disease_modeling/">Open project →</a>
+          </div>
+        </details>
+
+        <details class="card">
+          <summary>
+            <span class="num">06</span><span class="ttl">Cross-species transfer: Chlorella → mammalian cells</span><span class="plus">+</span>
+            <span class="tags"><span class="tag">Wet lab</span><span class="tag planned">Scheduled</span></span>
+          </summary>
+          <div class="inner">
+            <p>Can mitochondria from a photosynthetic alga be accepted by mammalian cells? A small pilot to test the limits of compatibility.</p>
+            <a class="pill dark small" href="projects/chlorella/">Open project →</a>
+          </div>
+        </details>
+
+        <details class="card">
+          <summary>
+            <span class="num">07</span><span class="ttl">Review, impact analysis and dose modeling</span><span class="plus">+</span>
+            <span class="tags"><span class="tag">Review</span><span class="tag done">Analysis done · writing</span></span>
+          </summary>
+          <div class="inner">
+            <p>The first combined ethical, environmental and market assessment of mitochondrial transfer, a dose-modeling
+            proposal, and a case for revisiting mitochondrial transfer in IVF.</p>
+            <a class="pill dark small" href="projects/impact_review/">Open project →</a>
+          </div>
+        </details>
+
+        <details class="card">
+          <summary>
+            <span class="num">08</span><span class="ttl">Shadowing the ARCHIE project</span><span class="plus">+</span>
+            <span class="tags"><span class="tag">Training</span><span class="tag done">Done</span></span>
+          </summary>
+          <div class="inner">
+            <p>Learning how a working lab transplants mitochondria into granulocytes with the PORTER machine. It reshaped project 01.</p>
+            <a class="pill dark small" href="projects/archie/">Open project →</a>
+          </div>
+        </details>
+
+      </div>
+
+      <div class="dict grain">
+        <p>A mitochondrion is the part of the cell that turns food into usable energy. It turns out cells can also hand them
+        to each other, and that is what this whole repository is about.</p>
+        <div class="word">mitochondrion</div>
+        <div class="ipa">/ˌmaɪtəˈkɒndriən/ <i>noun</i></div>
+        <div class="plural">plural <i>mitochondria</i></div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>Jules · Italy</span>
+    <span>Supported by <a href="https://primordiagrants.com">Primordia Grants</a> · <a href="https://github.com/July98293/mito">GitHub</a></span>
+  </div>
+</footer>
+
+<script src="assets/js/mito_anim.js"></script>
+</body>
+</html>
