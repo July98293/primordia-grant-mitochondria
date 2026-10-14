@@ -16,7 +16,7 @@ REVIEW = "https://docs.google.com/document/d/1kj4KnFPToj63mUdTQlj4Y36CZ2tQBBy-Za
 PROTO_IT = "https://docs.google.com/document/d/1kcMtympZKznmKZOCmk6glHhtj8bLUTGe6FA3WrZYADY/edit?usp=sharing"
 
 ORDER = ["neutrophil_transfer", "microgravity_blood", "secondary_transfer", "leukemia",
-         "disease_modeling", "chlorella", "impact_review", "archie"]
+         "chlorella", "impact_review", "archie"]
 PAGES = {}
 NAMES = {}
 
@@ -62,8 +62,8 @@ VERNE = ('  <blockquote class="quote"><p>&ldquo;Science, my lad, is made up of m
 page("neutrophil_transfer",
      "Mitochondrial Transfer into Neutrophils", "Ongoing", "ongoing", "Wet lab",
      "Isolated mitochondria were transferred into granulocytes across several runs. Uptake was low and the activity "
-     "signal was lost within about 20 minutes. Two causes were identified: the isolation step itself damages "
-     "mitochondria, and uptake is genetically constrained. A route that avoids isolation is the next experiment.",
+     "signal was lost within about 20 minutes. Two constraints came out of it: the cells are fragile, and uptake is "
+     "genetically limited.",
      "\n".join([
          h("Objective"),
          ul(["Deliver functional mitochondria into neutrophils.",
@@ -80,35 +80,18 @@ page("neutrophil_transfer",
          h("Results"),
          ul(["Uptake was low in every run.",
              "Transferred mitochondria lost detectable activity after about 20 minutes.",
-             "Lipid-mediated delivery was the first hypothesis for the loss. It was dropped once the cause became clearer.",
-             "Negative result: isolated mitochondria are too fragile for this cell type without stabilisation."]),
+             "Lipid-mediated delivery was the first hypothesis for the loss. It was dropped once the cause became clearer."]),
          fig(2, "f2_activity", "Decay curve of the activity signal reaching the detection floor at about 20 minutes.",
              "Shape of the observed loss of signal. Schematic, not measured values."),
          VERNE,
 
          h("What explained it"),
-         ol(['The isolation protocol in the literature is not the one the lab uses. Less filtration, a different '
-             'buffer, and sonication rather than a fine needle, all to limit damage. Learned while '
-             '<a href="../archie/">shadowing the ARCHIE project</a>.',
+         ul(["The neutrophils were too fragile.",
              'Mitochondrial uptake is genetically limited. This came out of the '
              '<a href="../secondary_transfer/">secondary transfer analysis</a> running in parallel.',
-             'The PORTER team keeps mitochondria in blood, stabilises them there, and performs the transfer in that '
-             'environment rather than extracting them. Their result matches the hypothesis I started from. It is '
-             'unpublished, so it was not available from the literature.']),
-         fig(3, "f3_routes", "Comparison of the isolated route used here and the in-blood route used by the PORTER team.",
-             "The two routes differ in one respect that matters: whether mitochondria ever leave the blood."),
-
-         h("Status and next steps"),
-         ul(["<b>19 September.</b> Run scheduled at the Stanford lab, postponed when the professor had to leave town.",
-             "<b>22 September.</b> Rescheduled as a variation of the in-blood route.",
-             "<b>Fallback.</b> Reproduce in Italy. No PORTER machine there, and the mitochondria may not survive without it.",
-             'Reagent ordering was blocked until grant funds reached the lab account, since ordering requires a lab ID.']),
-
-         h("Assessment"),
-         ul(["The initial hypothesis about granulocytes was correct, but not testable with the method available at the time.",
-             "The limiting factor was the preparation, not the cell type."]),
-     ]),
-     [("Protocol, Italy", PROTO_IT)])
+             "Another team is doing this with finer technology, transferring mitochondria into whole blood without "
+             "separating them first."]),
+     ]))
 
 # ============================================================== 02
 page("microgravity_blood",
@@ -136,74 +119,23 @@ page("microgravity_blood",
 
          h("Blocker"),
          ul(["Requires a calibrated clinostat. A self-built unit would not make the experiment reproducible by other labs.",
-             "Microgravity is also queued as a dataset in the <a href=\"../disease_modeling/\">disease comparison work</a>, "
+             "Microgravity is also queued as a dataset in the <a href=\"../leukemia/\">disease comparison work</a>, "
              "so the wet-lab and computational sides can eventually be compared."]),
      ]))
 
 # ============================================================== 03
 page("secondary_transfer",
-     "Secondary Mitochondrial Transfer", "Code done, in review", "done", "Computational",
+     "Secondary Mitochondrial Transfer", "Ongoing", "ongoing", "Computational",
      "Rather than delivering isolated mitochondria directly, use a cell as the carrier. This project built a "
      "single-cell pipeline across the immune system to rank which populations can receive, hold and redistribute "
      "mitochondria. The myeloid progenitor ranks highest, with a highly specific surface marker but a narrow "
      "tissue distribution.",
-     "\n".join([
-         photo(1, "nanotube_sem.png",
-               "Scanning electron micrograph of a T cell joined to a cancer cell by a single long nanotube.",
-               "Two cells joined by a single nanotube. Connections like this are the physical route cargo takes "
-               "between cells, and the reason a carrier cell is worth looking for."),
-
-         h("Rationale"),
-         ul(["Isolated mitochondria are fragile in transit and poorly taken up. That is the constraint from the "
-             "<a href=\"../neutrophil_transfer/\">wet-lab work</a>.",
-             "A cell that takes up mitochondria and delivers them elsewhere avoids exposing them to a buffer.",
-             "This makes delivery more controlled and potentially targeted."]),
-         fig(2, "f1_concept", "Direct transfer compared with transfer through an intermediate carrier cell.",
-             "Direct delivery against carrier-mediated delivery. The analysis is about who should play the middle role."),
-
-         h("Method"),
-         ul(["No prior single-cell experience. Two weeks at the start of July to learn data structures, normalisation, "
-             "pseudobulk analysis, batch structure and cell-state scoring.",
-             "The pipeline was rebuilt three times, each pass tightening normalisation and the scoring definition.",
-             "Now final and awaiting review."]),
-         fig(3, "f2_pipeline", "Five stage pipeline from single cell datasets to ranked candidates.",
-             "Analysis pipeline. Scoring combines uptake and donation programs rather than a single marker."),
-
-         h("Questions"),
-         ol(["Which pathways correlate with mitochondrial uptake and transfer?",
-             "Which immune cells are strongest at producing, receiving and donating mitochondria?",
-             "Which cells can reach each other, and which are best placed to donate?"]),
-
-         h("Results"),
-         ul(["Myeloid progenitor is the strongest candidate, at a composite score of 8.43.",
-             "Its marker, ITGA2B (CD41), is present in 87% of its cells against 3% across other cell types.",
-             "It is found in a single organ, which limits where it can be sourced.",
-             "Haematopoietic stem cells and progenitors score 5.49 but span 8 organs and 2,825 cells, with FLT3 (CD135) as the marker."]),
-         fig(4, "f3_scores", "Bar chart of composite carrier scores: 8.43 for myeloid progenitor, 5.49 for HSC and progenitors.",
-             "Composite carrier score for the two leading populations, with their tissue breadth alongside."),
-         fig(5, "f4_marker", "Bar chart showing ITGA2B present in 87 percent of myeloid progenitor cells against 3 percent elsewhere.",
-             "ITGA2B specificity. A marker this clean makes the population straightforward to sort for."),
-         """  <div class="table-wrap">
-  <table>
-    <caption>Table 1. Leading candidate carrier populations.</caption>
-    <thead><tr><th>Population</th><th class="num">Score</th><th>Marker</th><th>Breadth</th></tr></thead>
-    <tbody>
-      <tr><td>Myeloid progenitor</td><td class="num">8.43</td><td>ITGA2B (CD41)</td><td>1 organ</td></tr>
-      <tr><td>HSC / progenitors</td><td class="num">5.49</td><td>FLT3 (CD135)</td><td>8 organs, 2,825 cells</td></tr>
-    </tbody>
-  </table>
-  </div>""",
-
-         h("Trade-off"),
-         ul(["Highest score with the cleanest marker, but one organ.",
-             "Lower score, but broadly distributed and far easier to obtain.",
-             "Which matters more depends on whether the carrier has to be sourced from the patient."]),
-     ]),
+     '  <p class="banner">Still ongoing. The full write-up will follow.</p>',
      [("Analysis code", GH)])
 
 # ============================================================== 04
 page("leukemia",
-     "Comparison against Disease: Leukemia", "Partially done", "ongoing", "Computational",
+     "Comparison of Mitochondrial Expression against Disease: Leukemia", "Partially done", "ongoing", "Computational",
      "The receiver-program pipeline was extended to disease. In acute myeloid leukemia against healthy donors, "
      "mitochondrial genes are modestly but consistently up in T and NK cells, down in erythroid cells, and flat "
      "elsewhere. Batch structure across studies is the limiting factor.",
@@ -221,73 +153,99 @@ page("leukemia",
          fig(1, "f1_pipeline", "Five stage disease comparison pipeline.",
              "Disease comparison pipeline. Steps 1 and 2 are where most of the work sits."),
 
+         h("What is measured"),
+         ul(["Two gene families carry the signal: the respiratory chain itself, and the ribosome that builds it.",
+             "Neither family moves far on its own. They move together, which is what makes the shift readable."]),
+         fig(2, "f3_genesets", "The two mitochondrial gene families feeding the per cell type score.",
+             "Oxidative phosphorylation and mitochondrial ribosome genes, scored together per cell type."),
+
          h("Results"),
          ul(["T and NK cells: up, modest but consistent.",
              "B cells: same direction, short of significance.",
              "Erythroid cells: down.",
-             "Remaining cell types tested: no reliable signal.",
-             "Not every one of the 10 groups shows significant variation in pathways."]),
-         fig(2, "f2_direction", "Direction of change by cell type in AML against healthy donors.",
+             "The six remaining groups of the ten tested: no reliable signal.",
+             "The effect is a coordinated shift rather than a few strongly changed genes."]),
+         fig(3, "f2_direction", "Direction of change by cell type in AML against healthy donors, across ten cell groups.",
              "Direction of change by cell type. Effect sizes are modest, so direction and consistency carry the result, not magnitude."),
 
          h("Limits"),
          ul(["Datasets come from different studies and experimental conditions, so batch correction drives the outcome.",
              "Dataset selection for multi-disease comparison is still open.",
              "Review of the code is still outstanding."]),
+
+         h("This is the beginning"),
+         ul(["Leukemia is the first disease through the pipeline, not the point of it.",
+             "Microgravity, infarct, obesity, PCOS and others are queued.",
+             "The intent is to see how mitochondria vary across disease, rather than to characterise any one of them.",
+             "With enough comparisons the shared response can be modelled directly, at the level of the organelle."]),
+         fig(4, "f4_roadmap", "Completed and queued disease datasets feeding a shared model.",
+             "Each comparison adds one view of how mitochondrial programs shift. The model is only worth building once several agree."),
      ]),
      [("Analysis code", GH)])
 
 # ============================================================== 05
-page("disease_modeling",
-     "More Diseases and Organelle-Level Modeling", "Ongoing", "ongoing", "Computational",
-     "With leukemia complete, further disease comparisons are queued. The aim is a shared model of how mitochondrial "
-     "programs shift under perturbation: similar in concept to a virtual cell, but scoped to the organelle.",
-     "\n".join([
-         h("Queue"),
-         ul(["Microgravity, which pairs with the <a href=\"../microgravity_blood/\">wet-lab experiment</a>.",
-             "Infarct.", "Obesity.", "PCOS.", "Further conditions as suitable datasets appear."]),
-         fig(1, "f1_roadmap", "Completed and queued disease datasets feeding a shared model.",
-             "Each comparison adds one view of how mitochondrial programs shift. The model is only worth building once several agree."),
-
-         h("Objective"),
-         ul(["Combine the disease comparisons with the "
-             "<a href=\"../secondary_transfer/\">donor and receiver map</a>.",
-             "Model mitochondrial perturbation directly rather than inferring it from whole-cell behaviour."]),
-
-         h("Requirement"),
-         ul(["Enough disease datasets for the shared signal to separate from batch effects.",
-             "That threshold has not been reached yet."]),
-     ]))
-
-# ============================================================== 06
+# ============================================================== 05
 page("chlorella",
-     "Cross-Species Transfer: Chlorella to Mammalian Cells", "Scheduled", "planned", "Wet lab",
-     "A pilot testing whether mitochondria from a photosynthetic alga are recognised and functionally tolerated by "
-     "mammalian recipient cells. The design distinguishes three outcomes, and all three are informative.",
+     "Cross-Species Transfer: Chlorella to Mammalian Cells", "Attempted, unsuccessful", "ongoing", "Wet lab",
+     "A pilot testing whether mitochondria from a photosynthetic eukaryote are recognised and functionally tolerated "
+     "by mammalian recipient cells. Isolation was attempted by differential centrifugation, following the published "
+     "plant protocol. It did not yield a usable preparation. A density gradient is the obvious next attempt.",
      "\n".join([
          h("Objective"),
-         ul(["Determine whether mammalian cells take up Chlorella-derived mitochondria.",
+         ul(["Determine whether mammalian cells take up mitochondria from a photosynthetic eukaryote.",
              "If they do, determine whether the mitochondria are retained or cleared."]),
 
          h("Design"),
-         ol(["Culture Chlorella.",
+         ol(["Culture the algae and concentrate the cells.",
              "Isolate mitochondria.",
              "Add to mammalian recipient cells.",
              "Score against three outcomes: no uptake, transient uptake, functional tolerance."]),
          fig(1, "f1_design", "Three step pilot design with three distinguishable outcomes.",
              "Pilot design. The three outcomes are separable, so a negative result is still a result."),
+         photo(2, "chlorella_culture.jpg",
+               "A gloved hand holding a conical tube of dense green algal culture.",
+               "Algal culture concentrated ahead of isolation."),
+         photo(3, "plant_material.jpg",
+               "A potato tuber held next to a sealed bag of 50 ml bio-reaction tubes containing green material.",
+               "Plant material and 50 ml reaction tubes on the way to the lab. Potato tuber is the starting material "
+               "in the published protocol the procedure was taken from."),
+
+         h("Isolation procedure"),
+         ul(["Adapted from the published method for isolating mitochondria from potato tubers "
+             "(Havelund et al., <i>Bio-protocol</i> e1226). Every step is carried out at 0 to 4 &deg;C."]),
+         ol(["Homogenise the tissue into roughly half its volume of extraction medium, containing cysteine as an "
+             "antioxidant and bovine serum albumin to bind fatty acids and phenolics.",
+             "Adjust to pH 7.2 with potassium hydroxide and leave the homogenate to stand for 5 minutes, so starch sediments.",
+             "Filter through two layers of cotton.",
+             "Spin at 3,000 &times; g for 5 minutes to clear debris and residual starch. Keep the supernatant.",
+             "Spin the supernatant at 18,000 &times; g for 10 minutes to pellet crude mitochondria.",
+             "Resuspend the pellet in mannitol gradient buffer."]),
+         ul(["In the published method, steps 4 and 5 are followed by a step Percoll gradient of 50%, 28% and 20% layers, "
+             "spun at 40,000 &times; g for 30 minutes, then washes at 18,000 &times; g.",
+             "Only the differential centrifugation part was attempted here. The gradient was not."]),
+
+         h("Outcome"),
+         ul(["Differential centrifugation alone did not produce a usable mitochondrial preparation.",
+             "This is the expected failure mode: without a density step, chloroplasts and other organelles of similar "
+             "sedimentation behaviour are not separated out.",
+             "The algal cell wall is also hard to break gently, which limits what the first spin can recover.",
+             "No transfer into mammalian cells was reached, so the three outcomes above remain untested."]),
+
+         h("Next attempt"),
+         ul(["Add a density gradient. Ficoll is the candidate to try, in place of or alongside Percoll.",
+             "That is the step the published protocol relies on, and the step that was skipped here."]),
 
          h("Prior expectation"),
          ul(["Most likely no uptake.",
-             "Otherwise transient uptake followed by clearance, on the grounds that these mitochondria are not efficient in a mammalian cell.",
-             "A functional effect would open the broader question of cross-species compatibility and the limits of mitochondrial transplantation."]),
-
-         h("Status"),
-         ul(["Waiting on the algae.", "Experiment scheduled for 20 September."]),
+             "Otherwise transient uptake followed by clearance, on the grounds that these mitochondria are not "
+             "efficient in a mammalian cell.",
+             "A functional effect would open the broader question of cross-species compatibility and the limits of "
+             "mitochondrial transplantation."]),
      ]),
-     [("Protocol and supporting material", DRIVE)])
+     [("Protocol and supporting material", DRIVE),
+      ("Source protocol: Isolation of Mitochondria from Potato Tubers", "https://bio-protocol.org/e1226")])
 
-# ============================================================== 07
+# ============================================================== 06
 page("impact_review",
      "Review, Impact Analysis and Dose Modeling", "Analysis done, writing", "done", "Review",
      "A review of mitochondrial transfer carrying what appears to be the first combined ethical, environmental and "
@@ -317,7 +275,7 @@ page("impact_review",
      ]),
      [("Review document", REVIEW), ("Supporting material", DRIVE)])
 
-# ============================================================== 08
+# ============================================================== 07
 page("archie",
      "Shadowing the ARCHIE Project", "Done", "done", "Training",
      "Training placement on a project performing mitochondrial transplantation into granulocytes. It established "

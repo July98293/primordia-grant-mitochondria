@@ -223,3 +223,10 @@ figcaption b { font-family: var(--head); font-weight: 600; color: var(--ink); }
 /* a static photograph sits on the paper, unlike the drawn figures */
 .article figure img.photo { background: #fff; padding: 0; max-width: 480px; margin-inline: auto; }
 .article figure:has(img.photo) figcaption { max-width: 480px; margin-inline: auto; }
+
+/* ---------- in-progress banner ---------- */
+.article .banner {
+  font-family: var(--head); font-weight: 500; font-size: 1.02rem; color: var(--ink);
+  border: 1.5px dashed var(--peri); border-radius: 16px; padding: .85rem 1.2rem;
+  margin: 1.8rem 0; max-width: 44rem;
+}

@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 262" role="img" aria-labelledby="ti de">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 292" role="img" aria-labelledby="ti de">
   <title id="ti">Direction of change in mitochondrial gene expression, AML against healthy donors</title>
-  <desc id="de">T and NK cells move up, B cells trend up without reaching significance, erythroid cells move down, other cell types show no reliable signal.</desc>
+  <desc id="de">T and NK cells move up, B cells trend up without reaching significance, erythroid cells move down, the six remaining groups show no reliable signal.</desc>
   <style>
     text { font-family: "Jost","Avenir Next","Futura","Century Gothic",system-ui,sans-serif; fill: #24233a; }
     .t  { font-size: 15px; font-weight: 600; fill: #16152b; }
@@ -19,7 +19,7 @@
       <path d="M0,0 L10,5 L0,10 Z" fill="#3a3fb8"/>
     </marker>
   </defs>
-<line class="ax" x1="400" y1="30" x2="400" y2="214"/>
+<line class="ax" x1="400" y1="30" x2="400" y2="212"/>
 <text class="xs" x="400" y="24" text-anchor="middle">no change</text>
 <text class="s" x="250" y="56" text-anchor="end" dominant-baseline="middle">T cells</text>
 <line x1="400" y1="56" x2="510" y2="56" stroke="#7d5ff0" stroke-width="3"/>
@@ -37,8 +37,14 @@
 <line x1="400" y1="164" x2="290" y2="164" stroke="#3f8fd4" stroke-width="3"/>
 <circle cx="290" cy="164" r="8" fill="#3f8fd4" stroke="#3f8fd4" stroke-width="2.5"/>
 <text class="xs" x="548" y="164" dominant-baseline="middle">down, consistent</text>
-<text class="s" x="250" y="200" text-anchor="end" dominant-baseline="middle">Other types tested</text>
-<circle cx="400" cy="200" r="7" fill="none" stroke="#a9a4c0" stroke-width="2"/>
-<text class="xs" x="548" y="200" dominant-baseline="middle">no reliable signal</text>
-<text class="xs" x="12" y="246">Filled marker: significant. Open marker: same direction, not significant. Effect sizes are modest; horizontal positions are qualitative.</text>
+<text class="s" x="250" y="232" text-anchor="end" dominant-baseline="middle">6 further groups</text>
+<circle cx="365" cy="232" r="5.5" fill="none" stroke="#a9a4c0" stroke-width="1.8"/>
+<circle cx="379" cy="232" r="5.5" fill="none" stroke="#a9a4c0" stroke-width="1.8"/>
+<circle cx="393" cy="232" r="5.5" fill="none" stroke="#a9a4c0" stroke-width="1.8"/>
+<circle cx="407" cy="232" r="5.5" fill="none" stroke="#a9a4c0" stroke-width="1.8"/>
+<circle cx="421" cy="232" r="5.5" fill="none" stroke="#a9a4c0" stroke-width="1.8"/>
+<circle cx="435" cy="232" r="5.5" fill="none" stroke="#a9a4c0" stroke-width="1.8"/>
+<text class="xs" x="548" y="232" dominant-baseline="middle">no reliable signal</text>
+<text class="xs" x="12" y="268">Ten cell groups were tested in all. Filled marker: significant. Open marker: same direction, not significant.</text>
+<text class="xs" x="12" y="284">Effect sizes are modest; horizontal positions are qualitative.</text>
 </svg>

@@ -23,21 +23,21 @@
 
   <section class="p-hero grain">
     <div class="sheet">
-      <div class="tags"><span class="tag">Project 06</span><span class="tag">Wet lab</span><span class="tag planned">Scheduled</span></div>
+      <div class="tags"><span class="tag">Project 05</span><span class="tag">Wet lab</span><span class="tag ongoing">Attempted, unsuccessful</span></div>
       <h1>Cross-Species Transfer: Chlorella to Mammalian Cells</h1>
     </div>
   </section>
 
   <article class="article">
-  <p class="lead">A pilot testing whether mitochondria from a photosynthetic alga are recognised and functionally tolerated by mammalian recipient cells. The design distinguishes three outcomes, and all three are informative.</p>
+  <p class="lead">A pilot testing whether mitochondria from a photosynthetic eukaryote are recognised and functionally tolerated by mammalian recipient cells. Isolation was attempted by differential centrifugation, following the published plant protocol. It did not yield a usable preparation. A density gradient is the obvious next attempt.</p>
   <h2>Objective</h2>
   <ul>
-    <li>Determine whether mammalian cells take up Chlorella-derived mitochondria.</li>
+    <li>Determine whether mammalian cells take up mitochondria from a photosynthetic eukaryote.</li>
     <li>If they do, determine whether the mitochondria are retained or cleared.</li>
   </ul>
   <h2>Design</h2>
   <ol>
-    <li>Culture Chlorella.</li>
+    <li>Culture the algae and concentrate the cells.</li>
     <li>Isolate mitochondria.</li>
     <li>Add to mammalian recipient cells.</li>
     <li>Score against three outcomes: no uptake, transient uptake, functional tolerance.</li>
@@ -46,20 +46,51 @@
     <img src="img/f1_design.svg" alt="Three step pilot design with three distinguishable outcomes.">
     <figcaption><b>Figure 1.</b> Pilot design. The three outcomes are separable, so a negative result is still a result.</figcaption>
   </figure>
+  <figure>
+    <img class="photo" src="../../assets/img/chlorella_culture.jpg" alt="A gloved hand holding a conical tube of dense green algal culture.">
+    <figcaption><b>Figure 2.</b> Algal culture concentrated ahead of isolation.</figcaption>
+  </figure>
+  <figure>
+    <img class="photo" src="../../assets/img/plant_material.jpg" alt="A potato tuber held next to a sealed bag of 50 ml bio-reaction tubes containing green material.">
+    <figcaption><b>Figure 3.</b> Plant material and 50 ml reaction tubes on the way to the lab. Potato tuber is the starting material in the published protocol the procedure was taken from.</figcaption>
+  </figure>
+  <h2>Isolation procedure</h2>
+  <ul>
+    <li>Adapted from the published method for isolating mitochondria from potato tubers (Havelund et al., <i>Bio-protocol</i> e1226). Every step is carried out at 0 to 4 &deg;C.</li>
+  </ul>
+  <ol>
+    <li>Homogenise the tissue into roughly half its volume of extraction medium, containing cysteine as an antioxidant and bovine serum albumin to bind fatty acids and phenolics.</li>
+    <li>Adjust to pH 7.2 with potassium hydroxide and leave the homogenate to stand for 5 minutes, so starch sediments.</li>
+    <li>Filter through two layers of cotton.</li>
+    <li>Spin at 3,000 &times; g for 5 minutes to clear debris and residual starch. Keep the supernatant.</li>
+    <li>Spin the supernatant at 18,000 &times; g for 10 minutes to pellet crude mitochondria.</li>
+    <li>Resuspend the pellet in mannitol gradient buffer.</li>
+  </ol>
+  <ul>
+    <li>In the published method, steps 4 and 5 are followed by a step Percoll gradient of 50%, 28% and 20% layers, spun at 40,000 &times; g for 30 minutes, then washes at 18,000 &times; g.</li>
+    <li>Only the differential centrifugation part was attempted here. The gradient was not.</li>
+  </ul>
+  <h2>Outcome</h2>
+  <ul>
+    <li>Differential centrifugation alone did not produce a usable mitochondrial preparation.</li>
+    <li>This is the expected failure mode: without a density step, chloroplasts and other organelles of similar sedimentation behaviour are not separated out.</li>
+    <li>The algal cell wall is also hard to break gently, which limits what the first spin can recover.</li>
+    <li>No transfer into mammalian cells was reached, so the three outcomes above remain untested.</li>
+  </ul>
+  <h2>Next attempt</h2>
+  <ul>
+    <li>Add a density gradient. Ficoll is the candidate to try, in place of or alongside Percoll.</li>
+    <li>That is the step the published protocol relies on, and the step that was skipped here.</li>
+  </ul>
   <h2>Prior expectation</h2>
   <ul>
     <li>Most likely no uptake.</li>
     <li>Otherwise transient uptake followed by clearance, on the grounds that these mitochondria are not efficient in a mammalian cell.</li>
     <li>A functional effect would open the broader question of cross-species compatibility and the limits of mitochondrial transplantation.</li>
   </ul>
-  <h2>Status</h2>
-  <ul>
-    <li>Waiting on the algae.</li>
-    <li>Experiment scheduled for 20 September.</li>
-  </ul>
   <h2>Links</h2>
-  <ul class="links"><li><a href="https://drive.google.com/drive/folders/17nLbYjkUvkEW27cAddLuNI1Nr_VTc1U7">&#8599; Protocol and supporting material</a></li></ul>
-  <div class="next-prev"><a class="pill" href="../disease_modeling/">&larr; More Diseases and Organelle-Level Modeling</a><a class="pill dark" href="../impact_review/">Review, Impact Analysis and Dose Modeling &rarr;</a></div>
+  <ul class="links"><li><a href="https://drive.google.com/drive/folders/17nLbYjkUvkEW27cAddLuNI1Nr_VTc1U7">&#8599; Protocol and supporting material</a></li><li><a href="https://bio-protocol.org/e1226">&#8599; Source protocol: Isolation of Mitochondria from Potato Tubers</a></li></ul>
+  <div class="next-prev"><a class="pill" href="../leukemia/">&larr; Comparison of Mitochondrial Expression against Disease: Leukemia</a><a class="pill dark" href="../impact_review/">Review, Impact Analysis and Dose Modeling &rarr;</a></div>
   </article>
 </main>
 

@@ -23,77 +23,17 @@
 
   <section class="p-hero grain">
     <div class="sheet">
-      <div class="tags"><span class="tag">Project 03</span><span class="tag">Computational</span><span class="tag done">Code done, in review</span></div>
+      <div class="tags"><span class="tag">Project 03</span><span class="tag">Computational</span><span class="tag ongoing">Ongoing</span></div>
       <h1>Secondary Mitochondrial Transfer</h1>
     </div>
   </section>
 
   <article class="article">
   <p class="lead">Rather than delivering isolated mitochondria directly, use a cell as the carrier. This project built a single-cell pipeline across the immune system to rank which populations can receive, hold and redistribute mitochondria. The myeloid progenitor ranks highest, with a highly specific surface marker but a narrow tissue distribution.</p>
-  <figure>
-    <img class="photo" src="../../assets/img/nanotube_sem.png" alt="Scanning electron micrograph of a T cell joined to a cancer cell by a single long nanotube.">
-    <figcaption><b>Figure 1.</b> Two cells joined by a single nanotube. Connections like this are the physical route cargo takes between cells, and the reason a carrier cell is worth looking for.</figcaption>
-  </figure>
-  <h2>Rationale</h2>
-  <ul>
-    <li>Isolated mitochondria are fragile in transit and poorly taken up. That is the constraint from the <a href="../neutrophil_transfer/">wet-lab work</a>.</li>
-    <li>A cell that takes up mitochondria and delivers them elsewhere avoids exposing them to a buffer.</li>
-    <li>This makes delivery more controlled and potentially targeted.</li>
-  </ul>
-  <figure>
-    <img src="img/f1_concept.svg" alt="Direct transfer compared with transfer through an intermediate carrier cell.">
-    <figcaption><b>Figure 2.</b> Direct delivery against carrier-mediated delivery. The analysis is about who should play the middle role.</figcaption>
-  </figure>
-  <h2>Method</h2>
-  <ul>
-    <li>No prior single-cell experience. Two weeks at the start of July to learn data structures, normalisation, pseudobulk analysis, batch structure and cell-state scoring.</li>
-    <li>The pipeline was rebuilt three times, each pass tightening normalisation and the scoring definition.</li>
-    <li>Now final and awaiting review.</li>
-  </ul>
-  <figure>
-    <img src="img/f2_pipeline.svg" alt="Five stage pipeline from single cell datasets to ranked candidates.">
-    <figcaption><b>Figure 3.</b> Analysis pipeline. Scoring combines uptake and donation programs rather than a single marker.</figcaption>
-  </figure>
-  <h2>Questions</h2>
-  <ol>
-    <li>Which pathways correlate with mitochondrial uptake and transfer?</li>
-    <li>Which immune cells are strongest at producing, receiving and donating mitochondria?</li>
-    <li>Which cells can reach each other, and which are best placed to donate?</li>
-  </ol>
-  <h2>Results</h2>
-  <ul>
-    <li>Myeloid progenitor is the strongest candidate, at a composite score of 8.43.</li>
-    <li>Its marker, ITGA2B (CD41), is present in 87% of its cells against 3% across other cell types.</li>
-    <li>It is found in a single organ, which limits where it can be sourced.</li>
-    <li>Haematopoietic stem cells and progenitors score 5.49 but span 8 organs and 2,825 cells, with FLT3 (CD135) as the marker.</li>
-  </ul>
-  <figure>
-    <img src="img/f3_scores.svg" alt="Bar chart of composite carrier scores: 8.43 for myeloid progenitor, 5.49 for HSC and progenitors.">
-    <figcaption><b>Figure 4.</b> Composite carrier score for the two leading populations, with their tissue breadth alongside.</figcaption>
-  </figure>
-  <figure>
-    <img src="img/f4_marker.svg" alt="Bar chart showing ITGA2B present in 87 percent of myeloid progenitor cells against 3 percent elsewhere.">
-    <figcaption><b>Figure 5.</b> ITGA2B specificity. A marker this clean makes the population straightforward to sort for.</figcaption>
-  </figure>
-  <div class="table-wrap">
-  <table>
-    <caption>Table 1. Leading candidate carrier populations.</caption>
-    <thead><tr><th>Population</th><th class="num">Score</th><th>Marker</th><th>Breadth</th></tr></thead>
-    <tbody>
-      <tr><td>Myeloid progenitor</td><td class="num">8.43</td><td>ITGA2B (CD41)</td><td>1 organ</td></tr>
-      <tr><td>HSC / progenitors</td><td class="num">5.49</td><td>FLT3 (CD135)</td><td>8 organs, 2,825 cells</td></tr>
-    </tbody>
-  </table>
-  </div>
-  <h2>Trade-off</h2>
-  <ul>
-    <li>Highest score with the cleanest marker, but one organ.</li>
-    <li>Lower score, but broadly distributed and far easier to obtain.</li>
-    <li>Which matters more depends on whether the carrier has to be sourced from the patient.</li>
-  </ul>
+  <p class="banner">Still ongoing. The full write-up will follow.</p>
   <h2>Links</h2>
   <ul class="links"><li><a href="https://github.com/July98293/mito">&#8599; Analysis code</a></li></ul>
-  <div class="next-prev"><a class="pill" href="../microgravity_blood/">&larr; Mitochondrial Transfer in Blood after Microgravity</a><a class="pill dark" href="../leukemia/">Comparison against Disease: Leukemia &rarr;</a></div>
+  <div class="next-prev"><a class="pill" href="../microgravity_blood/">&larr; Mitochondrial Transfer in Blood after Microgravity</a><a class="pill dark" href="../leukemia/">Comparison of Mitochondrial Expression against Disease: Leukemia &rarr;</a></div>
   </article>
 </main>
 

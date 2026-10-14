@@ -167,31 +167,32 @@ fig("leukemia", "f1_pipeline",
     + f'<text class="xs" x="12" y="176">Run across 10 cell groups.</text>')
 
 _rows = [("T cells", 1, True), ("NK cells", 1, True), ("B cells", 1, False),
-         ("Erythroid", -1, True), ("Other types tested", 0, False)]
+         ("Erythroid", -1, True)]
 _AX, _ANN = 400, 548
-_body = [f'<line class="ax" x1="{_AX}" y1="30" x2="{_AX}" y2="214"/>',
+_body = [f'<line class="ax" x1="{_AX}" y1="30" x2="{_AX}" y2="212"/>',
          f'<text class="xs" x="{_AX}" y="24" text-anchor="middle">no change</text>']
 for i, (nm, d, sig) in enumerate(_rows):
     y = 56 + i * 36
     _body.append(f'<text class="s" x="250" y="{y}" text-anchor="end" dominant-baseline="middle">{esc(nm)}</text>')
-    if d == 0:
-        _body.append(f'<circle cx="{_AX}" cy="{y}" r="7" fill="none" stroke="{FLAT}" stroke-width="2"/>')
-        _body.append(f'<text class="xs" x="{_ANN}" y="{y}" dominant-baseline="middle">no reliable signal</text>')
-        continue
     x2 = _AX + d * 110
     col = UP if d > 0 else DOWN
     _body.append(f'<line x1="{_AX}" y1="{y}" x2="{x2}" y2="{y}" stroke="{col}" stroke-width="3"/>')
     _body.append(f'<circle cx="{x2}" cy="{y}" r="8" fill="{col if sig else "#faf8ff"}" stroke="{col}" stroke-width="2.5"/>')
     txt = ("up, consistent" if d > 0 else "down, consistent") if sig else "same direction, not significant"
     _body.append(f'<text class="xs" x="{_ANN}" y="{y}" dominant-baseline="middle">{esc(txt)}</text>')
-_body.append(f'<text class="xs" x="12" y="246">Filled marker: significant. Open marker: same direction, not significant. '
-             f'Effect sizes are modest; horizontal positions are qualitative.</text>')
+# the remaining six of the ten groups tested, as a row of open markers on the axis
+_y = 232
+_body.append(f'<text class="s" x="250" y="{_y}" text-anchor="end" dominant-baseline="middle">6 further groups</text>')
+for k in range(6):
+    _body.append(f'<circle cx="{_AX - 35 + k * 14}" cy="{_y}" r="5.5" fill="none" stroke="{FLAT}" stroke-width="1.8"/>')
+_body.append(f'<text class="xs" x="{_ANN}" y="{_y}" dominant-baseline="middle">no reliable signal</text>')
+_body.append(f'<text class="xs" x="12" y="268">Ten cell groups were tested in all. Filled marker: significant. Open marker: same direction, not significant.</text>')
+_body.append(f'<text class="xs" x="12" y="284">Effect sizes are modest; horizontal positions are qualitative.</text>')
 fig("leukemia", "f2_direction",
     "Direction of change in mitochondrial gene expression, AML against healthy donors",
-    "T and NK cells move up, B cells trend up without reaching significance, erythroid cells move down, other cell types show no reliable signal.",
-    W, 262, "\n".join(_body))
+    "T and NK cells move up, B cells trend up without reaching significance, erythroid cells move down, the six remaining groups show no reliable signal.",
+    W, 292, "\n".join(_body))
 
-# ---------------------------------------------------------------- project 05
 _dis = [("Leukemia (AML)", "complete"), ("Microgravity", "queued"), ("Infarct", "queued"),
         ("Obesity", "queued"), ("PCOS", "queued")]
 _b = []
@@ -207,12 +208,24 @@ _b.append(arrow(_SPINE, 155, 448, 155))
 _b.append(box(460, 100, 180, 110, "Shared mitochondrial response model", "box", width=16))
 _b.append(arrow(640, 155, 684, 155))
 _b.append(label(722, 155, "per-organelle predictions", "xs", width=13))
-fig("disease_modeling", "f1_roadmap",
+fig("leukemia", "f4_roadmap",
     "Disease datasets feeding a shared model",
     "One completed disease comparison and four queued ones feed a shared model of mitochondrial perturbation.",
     W, 300, "\n".join(_b))
 
-# ---------------------------------------------------------------- project 06
+
+fig("leukemia", "f3_genesets",
+    "The two mitochondrial gene families that carry the signal",
+    "Oxidative phosphorylation genes and mitochondrial ribosome genes are the families whose coordinated movement produces the result.",
+    W, 250,
+    box(60, 46, 250, 86, "Oxidative phosphorylation", "box", sub="the respiratory chain itself", width=22)
+    + box(60, 148, 250, 86, "Mitochondrial ribosome", "box", sub="the machinery that builds it", width=22)
+    + arrow(310, 89, 404, 120)
+    + arrow(310, 191, 404, 160)
+    + box(416, 92, 200, 96, "Coordinated shift", "boxw", sub="scored per cell type", width=18)
+    + f'<text class="xs" x="12" y="24">Both families move together, which is what makes a modest change readable.</text>')
+
+# ---------------------------------------------------------------- project 05, Chlorella
 fig("chlorella", "f1_design",
     "Cross species pilot design and the outcomes it distinguishes",
     "Mitochondria isolated from Chlorella are added to mammalian cells; three outcomes are distinguishable.",
