@@ -86,30 +86,6 @@ fig("neutrophil_transfer", "f3_routes",
             12, 190, 170, 76, 20, width=17)
     + f'<text class="xs" x="12" y="290">Difference: route B never exposes mitochondria to an isolation buffer.</text>')
 
-# ---------------------------------------------------------------- project 02
-fig("microgravity_blood", "f1_design",
-    "Planned two by two design",
-    "Blood is either held in simulated microgravity or static, then either receives mitochondria or does not.",
-    W, 300,
-    f'<text class="xs" x="250" y="30" text-anchor="middle">no transfer</text>'
-    f'<text class="xs" x="500" y="30" text-anchor="middle">mitochondrial transfer</text>'
-    f'<text class="s" x="118" y="90" text-anchor="end">static</text>'
-    f'<text class="s" x="118" y="200" text-anchor="end">clinostat</text>'
-    + box(130, 44, 240, 92, "Baseline", "boxw", sub="reference state")
-    + box(382, 44, 240, 92, "Transfer only", "box", sub="uptake in normal gravity")
-    + box(130, 154, 240, 92, "Microgravity only", "boxw", sub="effect of exposure alone")
-    + box(382, 154, 240, 92, "Microgravity + transfer", "box", sub="the condition of interest")
-    + f'<text class="xs" x="12" y="282">Each arm is read out for uptake and for how long activity persists.</text>')
-
-fig("microgravity_blood", "f2_protocol",
-    "Planned protocol order",
-    "Draw blood, expose to simulated microgravity, perform the transfer, then read out.",
-    W, 170,
-    chain([("Draw blood", None), ("Clinostat exposure", "fixed duration"),
-           ("Transfer", "in blood, as in route B"), ("Read out", "uptake and persistence")],
-          12, 28, 170, 86, 20, width=17)
-    + f'<text class="xs" x="12" y="150">Blocked on access to a calibrated clinostat; a self-built unit would not be reproducible.</text>')
-
 # ---------------------------------------------------------------- project 03
 fig("secondary_transfer", "f1_concept",
     "Direct transfer compared with carrier mediated transfer",
@@ -239,7 +215,6 @@ fig("chlorella", "f1_design",
     + f'<text class="xs" x="12" y="276">Prior expectation: no uptake, or transient uptake followed by clearance on efficiency grounds.</text>'
     + f'<text class="xs" x="12" y="296">A functional effect would raise the broader question of cross species compatibility limits.</text>')
 
-# ---------------------------------------------------------------- project 07
 _ch = ["Ethical assessment", "Environmental impact", "Market assessment", "Dose modeling proposal", "Case for IVF review"]
 _b = [box(12 + i * 151, 40, 139, 92, c, "box" if i < 3 else "boxw", width=14) for i, c in enumerate(_ch)]
 _b.append(f'<text class="xs" x="12" y="24">Five parts, written as one argument rather than five notes.</text>')
@@ -269,18 +244,6 @@ fig("impact_review", "f2_dose",
     + f'<text class="xs" x="{_x0}" y="{_y1 + 70}">Too little has no effect; too much adds material the recipient cell has to clear.</text>')
 
 # ---------------------------------------------------------------- project 08
-fig("archie", "f1_protocols",
-    "Published protocol compared with the protocol used in the lab",
-    "Three steps differ: how cells are broken open, how much filtration is used, and the buffer.",
-    W, 300,
-    f'<text class="t" x="12" y="24">As described in the literature</text>'
-    + chain([("Break cells", "fine needle"), ("Filter", "repeated"), ("Standard buffer", None)],
-            12, 36, 232, 76, 22, width=18)
-    + f'<text class="t" x="12" y="164">As performed in the lab</text>'
-    + chain([("Break cells", "sonication"), ("Filter", "minimal, to limit damage"), ("Different buffer", None)],
-            12, 176, 232, 76, 22, width=18)
-    + f'<text class="xs" x="12" y="288">Each change reduces mechanical stress on the mitochondria. None of it is stated in the papers.</text>')
-
 # ---------------------------------------------------------------------------
 n = 0
 for slug, items in FIGS.items():

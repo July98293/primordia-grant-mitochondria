@@ -15,8 +15,7 @@ DRIVE = "https://drive.google.com/drive/folders/17nLbYjkUvkEW27cAddLuNI1Nr_VTc1U
 REVIEW = "https://docs.google.com/document/d/1kj4KnFPToj63mUdTQlj4Y36CZ2tQBBy-ZaOkEYCL3Wo/edit?tab=t.0"
 PROTO_IT = "https://docs.google.com/document/d/1kcMtympZKznmKZOCmk6glHhtj8bLUTGe6FA3WrZYADY/edit?usp=sharing"
 
-ORDER = ["neutrophil_transfer", "microgravity_blood", "secondary_transfer", "leukemia",
-         "chlorella", "impact_review", "archie"]
+ORDER = ["neutrophil_transfer", "secondary_transfer", "leukemia", "chlorella", "impact_review"]
 PAGES = {}
 NAMES = {}
 
@@ -39,6 +38,22 @@ def fig(n, src, alt, cap):
             f'    <img src="img/{src}.svg" alt="{alt}">\n'
             f'    <figcaption><b>Figure {n}.</b> {cap}</figcaption>\n'
             f'  </figure>')
+
+
+def gallery(folder, caption):
+    """A square grid of lab photographs from assets/img/<folder>/, four per row.
+
+    Renders nothing while the folder is empty, so dropping files in and
+    rebuilding is all that is needed."""
+    d = ROOT / "assets" / "img" / folder
+    shots = sorted(q.name for q in d.glob("*") if q.suffix.lower() in {".jpg", ".jpeg", ".png", ".webp"})
+    if not shots:
+        return ""
+    tiles = "\n".join(
+        f'    <figure><img src="../../assets/img/{folder}/{n}" alt="Lab photograph from the transfer runs." loading="lazy"></figure>'
+        for n in shots)
+    return (f'  <div class="gallery">\n{tiles}\n  </div>\n'
+            f'  <p class="gallery-cap">{caption}</p>')
 
 
 def ul(items):
@@ -91,39 +106,14 @@ page("neutrophil_transfer",
              '<a href="../secondary_transfer/">secondary transfer analysis</a> running in parallel.',
              "Another team is doing this with finer technology, transferring mitochondria into whole blood without "
              "separating them first."]),
+
+         h("From the bench"),
+         gallery("neutrophil_gallery",
+                 "Isolation, labelling and transfer runs. Pellets, gradient fractions and the bench they were done on."),
      ]))
 
 # ============================================================== 02
-page("microgravity_blood",
-     "Mitochondrial Transfer in Blood after Microgravity", "Planned", "planned", "Wet lab",
-     "A variation of the neutrophil experiment in which blood is exposed to simulated microgravity before transfer. "
-     "The design is fixed. The work is blocked on access to a calibrated clinostat.",
-     "\n".join([
-         h("Objective"),
-         ul(["Test whether exposure to simulated microgravity changes mitochondrial uptake or how long activity persists.",
-             "Keep every other variable identical to the <a href=\"../neutrophil_transfer/\">neutrophil experiment</a>."]),
-
-         h("Design"),
-         ul(["Two factors: gravity condition and transfer.",
-             "Four arms, each read out for uptake and for persistence of activity."]),
-         fig(1, "f1_design", "Two by two design crossing static against clinostat with no transfer against transfer.",
-             "The two by two design. The microgravity and transfer arm is the condition of interest; the other three bound it."),
-
-         h("Protocol order"),
-         ol(["Draw blood.",
-             "Expose to simulated microgravity in a clinostat for a fixed duration.",
-             "Perform the transfer in blood, following the in-blood route.",
-             "Read out uptake and persistence."]),
-         fig(2, "f2_protocol", "Four step protocol from drawing blood to readout.",
-             "Protocol order. The exposure step is the only addition to the existing transfer protocol."),
-
-         h("Blocker"),
-         ul(["Requires a calibrated clinostat. A self-built unit would not make the experiment reproducible by other labs.",
-             "Microgravity is also queued as a dataset in the <a href=\"../leukemia/\">disease comparison work</a>, "
-             "so the wet-lab and computational sides can eventually be compared."]),
-     ]))
-
-# ============================================================== 03
+# ============================================================== 02
 page("secondary_transfer",
      "Secondary Mitochondrial Transfer", "Ongoing", "ongoing", "Computational",
      "Rather than delivering isolated mitochondria directly, use a cell as the carrier. This project built a "
@@ -133,7 +123,7 @@ page("secondary_transfer",
      '  <p class="banner">Still ongoing. The full write-up will follow.</p>',
      [("Analysis code", GH)])
 
-# ============================================================== 04
+# ============================================================== 03
 page("leukemia",
      "Comparison of Mitochondrial Expression against Disease: Leukemia", "Partially done", "ongoing", "Computational",
      "The receiver-program pipeline was extended to disease. In acute myeloid leukemia against healthy donors, "
@@ -183,8 +173,8 @@ page("leukemia",
      ]),
      [("Analysis code", GH)])
 
-# ============================================================== 05
-# ============================================================== 05
+# ============================================================== 04
+# ============================================================== 04
 page("chlorella",
      "Cross-Species Transfer: Chlorella to Mammalian Cells", "Attempted, unsuccessful", "ongoing", "Wet lab",
      "A pilot testing whether mitochondria from a photosynthetic eukaryote are recognised and functionally tolerated "
@@ -232,8 +222,18 @@ page("chlorella",
              "No transfer into mammalian cells was reached, so the three outcomes above remain untested."]),
 
          h("Next attempt"),
-         ul(["Add a density gradient. Ficoll is the candidate to try, in place of or alongside Percoll.",
-             "That is the step the published protocol relies on, and the step that was skipped here."]),
+         ul(["Add a density gradient. Ficoll is the candidate, in place of or alongside Percoll. It is the step the "
+             "published protocol relies on, and the step that was skipped here.",
+             "Ficoll is normally run as a two-layer gradient, around 8% over 14%, with the crude pellet loaded on top "
+             "and left unmixed. Free mitochondria collect in the pellet rather than at an interface, which is the "
+             "difference from a Percoll preparation.",
+             "The wall has to come apart first. Published work on thick-walled algae reports that these protocols "
+             "transfer across species with minor optimisation, provided the disruption step is adapted "
+             "(F&uuml;ssy et al. on <i>Chromera velia</i>). Sonication is the obvious candidate.",
+             "<i>Chlorella vulgaris</i> walls are specifically documented as resistant to disruption, so this is the "
+             "step most likely to need the work.",
+             "No Chlorella-specific mitochondrial isolation protocol appears to be published. The method has to be "
+             "assembled from the plant and thick-walled algae literature."]),
 
          h("Prior expectation"),
          ul(["Most likely no uptake.",
@@ -243,62 +243,17 @@ page("chlorella",
              "mitochondrial transplantation."]),
      ]),
      [("Protocol and supporting material", DRIVE),
-      ("Source protocol: Isolation of Mitochondria from Potato Tubers", "https://bio-protocol.org/e1226")])
+      ("Source protocol: Isolation of Mitochondria from Potato Tubers", "https://bio-protocol.org/e1226"),
+      ("Plastids and mitochondria from the thick-walled alga Chromera velia", "https://pubmed.ncbi.nlm.nih.gov/31422509"),
+      ("Cell wall disintegration of Chlorella vulgaris", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8759652/")])
 
-# ============================================================== 06
+# ============================================================== 05
 page("impact_review",
      "Review, Impact Analysis and Dose Modeling", "Analysis done, writing", "done", "Review",
      "A review of mitochondrial transfer carrying what appears to be the first combined ethical, environmental and "
      "market assessment of the field, a dose-modeling proposal, and a case for revisiting mitochondrial transfer in IVF.",
-     "\n".join([
-         h("Structure"),
-         ul(["Ethical assessment.", "Environmental impact assessment.", "Market assessment.",
-             "Dose-modeling proposal.", "A case for reopening mitochondrial transfer in IVF.",
-             "The dose-modeling, environmental, ethical and market analyses sit in chapters 4 and 5."]),
-         fig(1, "f1_structure", "Five parts of the review, two of which were added after expert review.",
-             "Structure of the review. The last two parts were added as the scope grew."),
-
-         h("Dose modeling"),
-         ul(["No dosing basis currently exists for mitochondrial transfer.",
-             "Too small a dose produces no effect. Too large a dose adds material the recipient cell has to clear.",
-             "A usable window is therefore expected, and the proposal is to establish where it sits."]),
-         fig(2, "f2_dose", "Schematic dose response curve with a candidate therapeutic window.",
-             "Why a window is expected. Schematic: the shape is the argument, the position is what the proposal sets out to determine."),
-
-         h("How it grew"),
-         ul(["Started as a short piece.",
-             "Rewritten roughly five times as conversations with subject experts changed the scope each round.",
-             "The result is one argument rather than five separate notes."]),
-
-         h("Status"),
-         ul(["Analysis complete.", "Writing needs tightening.", "Figures and ordering still to be finalised."]),
-     ]),
+     '  <p class="banner">Still being written. The document is linked below.</p>',
      [("Review document", REVIEW), ("Supporting material", DRIVE)])
-
-# ============================================================== 07
-page("archie",
-     "Shadowing the ARCHIE Project", "Done", "done", "Training",
-     "Training placement on a project performing mitochondrial transplantation into granulocytes. It established "
-     "that the working protocol differs from the published one at three points, each reducing mechanical stress on "
-     "the mitochondria.",
-     "\n".join([
-         h("Objective"),
-         ul(["Observe mitochondrial transplantation performed by a lab doing it routinely.",
-             "Compare the working protocol against the published one."]),
-
-         h("Findings"),
-         ol(["Cells are broken open by sonication rather than with a fine needle.",
-             "Filtration is kept to a minimum, to avoid damaging the mitochondria.",
-             "A different buffer is used.",
-             "Isolated mitochondria are highly sensitive, which is why the PORTER approach keeps them in blood instead."]),
-         fig(1, "f1_protocols", "Published protocol against the protocol used in the lab, differing at three steps.",
-             "Where the two protocols diverge. None of these differences are stated in the papers."),
-
-         h("Consequence"),
-         ul(["Explains the low uptake and rapid loss of activity in the "
-             "<a href=\"../neutrophil_transfer/\">neutrophil experiments</a>.",
-             "Turned a set of negative results into a defined next experiment."]),
-     ]))
 
 
 # =========================================================== render
@@ -352,7 +307,7 @@ def render():
 
 <footer class="foot">
   <div class="wrap">
-    <span>Jules &middot; Italy</span>
+    <span>Made by a human on 🌍</span>
     <span>Supported by <a href="https://primordiagrants.com">Primordia Grants</a> &middot; <a href="{GH}">GitHub</a></span>
   </div>
 </footer>

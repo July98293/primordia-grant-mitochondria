@@ -137,13 +137,6 @@ h2.big { font-weight: 800; font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.0
 .card .inner { padding: 0 1.2rem 1.2rem calc(1.2rem + 2.1rem); }
 .card .inner p { margin: 0 0 1rem; max-width: 36rem; }
 
-/* ---------- dictionary block ---------- */
-.dict { margin-top: 3rem; padding: 1.6rem 1.6rem 1.4rem; }
-.dict p { margin: 0 0 1.2rem; font-size: 1.02rem; }
-.dict .word { font-family: var(--head); font-weight: 500; font-size: 1.9rem; color: var(--ink); line-height: 1; }
-.dict .ipa { font-size: .95rem; color: var(--ink); margin-top: .3rem; }
-.dict .ipa i { margin-left: 1rem; }
-.dict .plural { font-size: .8rem; color: #59616d; }
 
 /* ---------- project pages ---------- */
 .back-row { padding: 1.6rem 0 1.2rem; }
@@ -221,7 +214,9 @@ figcaption b { font-family: var(--head); font-weight: 600; color: var(--ink); }
 .article .lead + h2 { margin-top: 2rem; }
 
 /* a static photograph sits on the paper, unlike the drawn figures */
-.article figure img.photo { background: #fff; padding: 0; max-width: 480px; margin-inline: auto; }
+.article figure img.photo {
+  background: #fff; padding: 0; width: auto; max-width: 480px; max-height: 440px; margin-inline: auto;
+}
 .article figure:has(img.photo) figcaption { max-width: 480px; margin-inline: auto; }
 
 /* ---------- in-progress banner ---------- */
@@ -230,3 +225,16 @@ figcaption b { font-family: var(--head); font-weight: 600; color: var(--ink); }
   border: 1.5px dashed var(--peri); border-radius: 16px; padding: .85rem 1.2rem;
   margin: 1.8rem 0; max-width: 44rem;
 }
+
+/* ---------- lab photo gallery: four squares per row ---------- */
+.gallery {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: .6rem;
+  margin: 1.6rem 0 .7rem;
+}
+.gallery figure { margin: 0; }
+.gallery img {
+  display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 38%;
+  border-radius: 12px; border: 1.5px solid var(--line); background: var(--paper);
+}
+.gallery-cap { font-size: .92rem; color: var(--muted); max-width: 44rem; }
+@media (max-width: 760px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
