@@ -53,26 +53,6 @@ fig("neutrophil_transfer", "f1_workflow",
     + f'\n<path class="dash" d="M 140,150 L 140,168 L 652,168 L 652,150"/>'
     + label(396, 182, "uptake low at step 4, signal gone by about 20 min at step 5", "xs", width=100))
 
-_t = [0, 5, 10, 15, 20, 25, 30, 35, 40]
-_pts = [(70 + 650 * (t / 40), 48 + 142 * (1 - math.exp(-t / 7.5))) for t in _t]
-_path = "M " + " L ".join(f"{x:.1f},{y:.1f}" for x, y in _pts)
-fig("neutrophil_transfer", "f2_activity",
-    "Loss of mitochondrial activity signal after transfer",
-    "Schematic decay curve: the fluorescent activity signal falls to the detection floor by roughly 20 minutes.",
-    W, 250,
-    f'<rect x="70" y="170" width="650" height="20" fill="#ece7f8"/>'
-    f'<text class="xs" x="716" y="182" text-anchor="end">detection floor</text>'
-    + "".join(f'<line class="gl" x1="70" y1="{48 + 142 * f:.0f}" x2="720" y2="{48 + 142 * f:.0f}"/>'
-              for f in (0, .25, .5, .75, 1))
-    + f'<path d="{_path}" fill="none" stroke="{INK}" stroke-width="2.8" stroke-linecap="round"/>'
-    + "".join(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.6" fill="{INK}"/>' for x, y in _pts)
-    + f'<line class="dash" x1="{70 + 650 * 0.5}" y1="40" x2="{70 + 650 * 0.5}" y2="190"/>'
-    + f'<text class="xs" x="{70 + 650 * 0.5 + 8}" y="54">activity no longer detectable</text>'
-    + axis_x(70, 720, 190, [(t, t / 40) for t in _t])
-    + f'<text class="xs" x="396" y="226" text-anchor="middle">minutes after transfer</text>'
-    + f'<text class="xs" x="24" y="119" text-anchor="middle" transform="rotate(-90,24,119)">activity signal</text>'
-    + '<text class="xs" x="70" y="24">Schematic. Shape of the observed decay, not measured values.</text>')
-
 fig("neutrophil_transfer", "f3_routes",
     "Two routes for delivering mitochondria",
     "The isolated route used in this project compared with the in-blood route used by the PORTER team.",

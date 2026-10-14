@@ -96,8 +96,6 @@ page("neutrophil_transfer",
          ul(["Uptake was low in every run.",
              "Transferred mitochondria lost detectable activity after about 20 minutes.",
              "Lipid-mediated delivery was the first hypothesis for the loss. It was dropped once the cause became clearer."]),
-         fig(2, "f2_activity", "Decay curve of the activity signal reaching the detection floor at about 20 minutes.",
-             "Shape of the observed loss of signal. Schematic, not measured values."),
          VERNE,
 
          h("What explained it"),
