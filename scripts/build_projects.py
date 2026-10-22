@@ -15,7 +15,8 @@ DRIVE = "https://drive.google.com/drive/folders/17nLbYjkUvkEW27cAddLuNI1Nr_VTc1U
 REVIEW = "https://docs.google.com/document/d/1kj4KnFPToj63mUdTQlj4Y36CZ2tQBBy-ZaOkEYCL3Wo/edit?tab=t.0"
 PROTO_IT = "https://docs.google.com/document/d/1kcMtympZKznmKZOCmk6glHhtj8bLUTGe6FA3WrZYADY/edit?usp=sharing"
 
-ORDER = ["neutrophil_transfer", "secondary_transfer", "leukemia", "chlorella", "impact_review"]
+ORDER = ["neutrophil_transfer", "healthy_vs_irradiated", "secondary_transfer", "leukemia",
+         "chlorella", "impact_review"]
 PAGES = {}
 NAMES = {}
 
@@ -111,6 +112,93 @@ page("neutrophil_transfer",
      ]))
 
 # ============================================================== 02
+page("healthy_vs_irradiated",
+     "Mitochondrial Transfer in Healthy versus Irradiated Cells", "Analysis pending", "ongoing", "Wet lab",
+     "Run on 26 September 2026. Mitochondria isolated from BJ fibroblasts were delivered to peripheral blood "
+     "mononuclear cells from a healthy and an irradiated arm, across two targeting antibodies and two controls. "
+     "The readouts are internalisation, mitochondrial ROS, mitochondrial mass and antioxidant capacity.",
+     "\n".join([
+         h("Objective"),
+         ul(["Quantify how much mitochondrial transfer occurs in healthy against irradiated PBMC.",
+             "Measure the fraction of cells that internalise mitochondria, and what happens to mitochondrial ROS and mass afterwards.",
+             "Establish whether a targeting antibody changes the outcome."]),
+
+         h("Cells used"),
+         ul(["Donor: BJ human foreskin fibroblasts.",
+             "Recipients: PBMC, one healthy arm (H) and one irradiated arm (I), 5 &times; 10<sup>6</sup> cells each.",
+             "The same counting session covered further lines belonging to other experiments. Those are not part of "
+             "this one and are left out here."]),
+         """  <div class="table-wrap">
+  <table>
+    <caption>Table 1. Counts at harvest, by automated fluorescence counter.</caption>
+    <thead><tr><th>Preparation</th><th>Density</th><th class="num">Viability</th><th>Taken forward</th></tr></thead>
+    <tbody>
+      <tr><td>BJ fibroblasts, donor</td><td>2.4 &times; 10<sup>6</sup>/mL</td><td class="num">73%</td><td>12 to 12.5 &times; 10<sup>6</sup></td></tr>
+      <tr><td>PBMC, healthy (H)</td><td>1.23 &times; 10<sup>6</sup>/mL</td><td class="num">63%</td><td>5 &times; 10<sup>6</sup></td></tr>
+      <tr><td>PBMC, irradiated (I)</td><td>7.26 &times; 10<sup>6</sup>/mL</td><td class="num">65%</td><td>5 &times; 10<sup>6</sup></td></tr>
+    </tbody>
+  </table>
+  </div>""",
+         fig(1, "f3_viability", "Bar chart of viability for the donor fibroblasts and the two PBMC arms.",
+             "Viability of the three preparations. Both PBMC arms sit in the low to mid sixties, which bounds how much the result can carry."),
+
+         h("Method"),
+         ol(["Isolate mitochondria from BJ fibroblasts. 500 &micro;L of suspension available across both arms.",
+             "Plate PBMC at 100,000 per well in V-bottom 96-well plates, ten wells per group.",
+             "Add 15 to 20 &micro;L of mitochondrial suspension per well, delivered in 150 &micro;L cold PBS.",
+             "Co-incubate for 90 minutes at 37 &deg;C and 5% CO<sub>2</sub>.",
+             "Wash two to three times in cold PBS.",
+             "Stain, fix in 2% paraformaldehyde, acquire by flow cytometry, analyse in FlowJo."]),
+         ul(["Non-transfer controls are handled identically at every step, including the washes."]),
+         fig(2, "f1_design", "Five step workflow from donor fibroblasts to flow cytometry.",
+             "Workflow. The transfer itself is one 90 minute co-incubation; everything around it is preparation and readout."),
+
+         h("Groups"),
+         ul(["Each arm receives four conditions: &alpha;-CD11a and &alpha;-CD11c as targeting antibodies, "
+             "rotenone with antimycin A as a respiration-blocked control, and a no-antibody control.",
+             "Eight groups in total, ten wells each."]),
+         fig(3, "f2_arms", "Grid of two arms against four conjugate conditions, ten wells each.",
+             "Group layout. The two controls are what make the antibody arms readable."),
+
+         h("Labels and stains"),
+         """  <div class="table-wrap">
+  <table>
+    <caption>Table 2. Readout reagents.</caption>
+    <thead><tr><th>Readout</th><th>Reagent</th><th>Concentration</th><th>Time</th></tr></thead>
+    <tbody>
+      <tr><td>Internalisation</td><td>AF647 (647-DBCO)</td><td>&mdash;</td><td>&mdash;</td></tr>
+      <tr><td>Mitochondrial ROS</td><td>MitoSOX Red</td><td>5 &micro;M</td><td>30 min, 37 &deg;C</td></tr>
+      <tr><td>Mitochondrial mass</td><td>MTV</td><td>50 nM</td><td>30 min, room temperature, after fixing</td></tr>
+      <tr><td>Antioxidant capacity</td><td>ThiolTracker Violet</td><td>10 &micro;M</td><td>30 min, 37 &deg;C</td></tr>
+      <tr><td>Antioxidant capacity</td><td>GSH detection kit</td><td>per kit</td><td>24 and 72 h supernatant</td></tr>
+      <tr><td>Immune subsets</td><td>&alpha;-CD3, &alpha;-CD4, &alpha;-CD14, &alpha;-CD19, &alpha;-CD56</td><td>25 &micro;g/mL</td><td>20 min</td></tr>
+    </tbody>
+  </table>
+  </div>""",
+
+         h("Endpoints"),
+         """  <div class="table-wrap">
+  <table>
+    <caption>Table 3. What each readout is compared against.</caption>
+    <thead><tr><th>Endpoint</th><th>Comparison</th></tr></thead>
+    <tbody>
+      <tr><td>Internalisation, AF647 positive</td><td>H against I, and across the four conditions</td></tr>
+      <tr><td>Mitochondrial ROS, MitoSOX median intensity</td><td>normalised to mitochondrial mass</td></tr>
+      <tr><td>Mitochondrial mass, MTV median intensity</td><td>H against I, with and without transfer</td></tr>
+      <tr><td>Antioxidant capacity, thiols and GSH</td><td>with and without transfer</td></tr>
+      <tr><td>Immune subset frequency</td><td>H against I</td></tr>
+    </tbody>
+  </table>
+  </div>""",
+
+         h("Status and open points"),
+         ul(["Cells counted and plated. No results recorded yet; the flow cytometry analysis is still to come.",
+             "Culture media and mouse strain were not written down at the time.",
+             "Viability in both PBMC arms is in the sixties, so a weak effect may not separate from the noise.",
+             'Builds on the <a href="../neutrophil_transfer/">neutrophil transfer work</a>, where the preparation '
+             "rather than the cell type turned out to be the limiting factor."]),
+     ]))
+
 # ============================================================== 02
 page("secondary_transfer",
      "Secondary Mitochondrial Transfer", "Ongoing", "ongoing", "Computational",

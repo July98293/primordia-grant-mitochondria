@@ -66,6 +66,46 @@ fig("neutrophil_transfer", "f3_routes",
             12, 190, 170, 76, 20, width=17)
     + f'<text class="xs" x="12" y="290">Difference: route B never exposes mitochondria to an isolation buffer.</text>')
 
+# ------------------------------------------------- project 02, healthy against irradiated
+fig("healthy_vs_irradiated", "f1_design",
+    "Transfer workflow for the healthy against irradiated arm",
+    "Mitochondria are isolated from BJ fibroblasts, labelled, co-incubated with PBMC for 90 minutes, then read by flow cytometry.",
+    W, 176,
+    chain([("BJ fibroblasts", "mitochondrial donor"), ("Isolate mitochondria", "500 \u00b5L available"),
+           ("Label", "AF647, 647-DBCO"), ("Co-incubate", "90 min, 37 \u00b0C, 5% CO\u2082"),
+           ("Flow cytometry", "analysed in FlowJo")], 14, 26, 130, 92, 18, width=14)
+    + f'<text class="xs" x="14" y="150">Washed two to three times in cold PBS between co-incubation and staining. '
+      f'Non-transfer controls are handled identically.</text>')
+
+_COLS = [("\u03b1-CD11a", "targeting"), ("\u03b1-CD11c", "targeting"),
+         ("Rot / AA", "respiration blocked"), ("Control", "no antibody")]
+_b = []
+for j, (nm, sub) in enumerate(_COLS):
+    _b.append(label(140 + j * 155 + 72, 20, nm, "t", width=14))
+    _b.append(label(140 + j * 155 + 72, 37, sub, "xs", width=24, lh=12))
+for i, arm in enumerate(["Healthy (H)", "Irradiated (I)"]):
+    y = 52 + i * 92
+    _b.append(f'<text class="s" x="128" y="{y + 36}" text-anchor="end" dominant-baseline="middle">{esc(arm)}</text>')
+    for j in range(4):
+        _b.append(box(140 + j * 155, y, 145, 72, "10 wells", "box" if j < 2 else "boxw",
+                      sub="100,000 cells each", width=13))
+_b.append(f'<text class="xs" x="14" y="258">Eight groups in V-bottom 96-well plates. '
+          f'15 to 20 \u00b5L of mitochondrial suspension per well, delivered in 150 \u00b5L cold PBS.</text>')
+fig("healthy_vs_irradiated", "f2_arms",
+    "Group layout: two arms against four conjugate conditions",
+    "Healthy and irradiated PBMC each receive four conditions: two targeting antibodies, a respiration-blocked control and a no-antibody control.",
+    W, 276, "\n".join(_b))
+
+fig("healthy_vs_irradiated", "f3_viability",
+    "Viability of the three cell preparations used",
+    "BJ donor fibroblasts at 73 percent, healthy PBMC at 63 percent and irradiated PBMC at 65 percent.",
+    W, 290,
+    hbar(250, 40, 330, 26, .73, "73%", "BJ fibroblasts (donor)", UP, note="2.4 \u00d7 10\u2076/mL")
+    + hbar(250, 112, 330, 26, .63, "63%", "Healthy PBMC (H)", DOWN, note="1.23 \u00d7 10\u2076/mL")
+    + hbar(250, 184, 330, 26, .65, "65%", "Irradiated PBMC (I)", DOWN, note="7.26 \u00d7 10\u2076/mL")
+    + axis_x(250, 580, 238, [(f"{t}%", t / 100) for t in (0, 25, 50, 75, 100)])
+    + f'<text class="xs" x="415" y="278" text-anchor="middle">viability at counting</text>')
+
 # ---------------------------------------------------------------- project 03
 fig("secondary_transfer", "f1_concept",
     "Direct transfer compared with carrier mediated transfer",
